@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body {
+	background: #e0e2e4;
+}
+
+#leftbox {
+	float: left;
+	background: #e0e2e4;
+	width: 20%;
+	height: 100%;
+}
+
+#middlebox {
+	text-align: reft;
+	float: left;
+	background: white;
+	width: 60%;
+	height: 100%;
+}
+
+#rightbox {
+	float: right;
+	background: #e0e2e4;
+	width: 20%;
+	height: 100%;
+}
+
+#c {
+	margin-bottom: 3rem;
+}
+
+#th {
+	text-align: center;
+}
+
+.dabong{
+	color:blue;
+}
+
+.top_th{
+	text-align: center;
+}
