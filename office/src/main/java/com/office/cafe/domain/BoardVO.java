@@ -15,5 +15,5 @@ public class BoardVO {
 	private Date board_created_date;
 	private String board_creator_id;
 	private Date board_update_date;
-
+	private String deleted_yn;
 }

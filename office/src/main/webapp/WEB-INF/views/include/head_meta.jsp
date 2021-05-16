@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>미니프로젝트</title>
-        <script src="${root}/resources/vendor/jquery/jquery.min.js"></script>
+     <!--    <script src="${root}/resources/vendor/jquery/jquery.min.js"></script> -->
         <link href="${root}/resources/css/styles.css" rel="stylesheet" />
     </head>
 </html>

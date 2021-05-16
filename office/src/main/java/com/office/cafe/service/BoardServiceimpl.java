@@ -1,12 +1,14 @@
 package com.office.cafe.service;
 
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.office.cafe.domain.BoardVO;
+import com.office.cafe.domain.PageVO;
 import com.office.cafe.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +44,19 @@ public class BoardServiceimpl implements BoardService {
 	@Override
 	public List<BoardVO> getList() {
 		return mapper.getList();
+	}
+
+	@Override
+	public List<BoardVO> geteListPage(PageVO page) {
+		List<BoardVO> boardList = Collections.emptyList();
+
+		int boardTotalCount = mapper.selectBoardTotalCount(page);
+
+		if (boardTotalCount > 0) {
+			boardList = mapper.selectBoardList(page);
+		}
+
+		return boardList;
 	}
 
 }

@@ -1,14 +1,18 @@
 package com.office.cafe.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.office.cafe.domain.BoardVO;
+import com.office.cafe.domain.PageVO;
 import com.office.cafe.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -22,11 +26,21 @@ public class BoardController {
 
 	private BoardService service;
 
+	/*
 	 @GetMapping("/list")
 	 public String list(Model model) {
 	 log.info("list");
 	 model.addAttribute("list", service.getList());
 	 return "dogdrip";
+	}
+	*/
+	
+	@GetMapping("/list")
+	public String openBoardList(@ModelAttribute("page") PageVO page, Model model) {
+		List<BoardVO> boardList = service.geteListPage(page);
+		model.addAttribute("boardList", boardList);
+
+		return "/board/list";
 	}
 	 
 	 @GetMapping("/register")

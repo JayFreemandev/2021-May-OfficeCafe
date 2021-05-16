@@ -2,11 +2,8 @@ package com.office.cafe.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Select;
-
-
 import com.office.cafe.domain.BoardVO;
+import com.office.cafe.domain.PageVO;
 
 public interface BoardMapper {
 	
@@ -21,5 +18,9 @@ public interface BoardMapper {
 	public List<BoardVO> getList();
 
 	public void insertSelectKey(BoardVO board);
+	
+	public List<BoardVO> selectBoardList(PageVO page);
+	
+	public int selectBoardTotalCount(PageVO page);
 	
 	}

@@ -37,4 +37,22 @@
   <select id="getList" resultType="BoardVO">
   select * from t_board where board_no > 0 order by board_no desc
   </select>
+ 
+  <select id="selectBoardList" parameterType="PageVO" resultType="BoardVO">
+   SELECT * FROM t_board WHERE deleted_yn = 'N'
+		ORDER BY
+			board_no DESC,
+			board_created_date DESC
+		LIMIT
+			#{startPage}, #{contentsPerPage}
+  </select>
+
+  <select id="selectBoardTotalCount" parameterType="PageVO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			t_board
+		WHERE
+			deleted_yn = 'N'
+	</select>
 </mapper>  
