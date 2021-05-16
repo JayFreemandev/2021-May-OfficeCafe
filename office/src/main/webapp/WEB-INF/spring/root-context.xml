@@ -9,12 +9,12 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:mysql://127.0.0.1:3306/office?useUnicode=true&amp;characterEncoding=utf-8"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="1234"></property>
+        <property name="driverClassName"
+            value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+        <property name="jdbcUrl"
+            value="jdbc:log4jdbc:mysql://summer-spring-project.colgzhvz3vna.ap-northeast-2.rds.amazonaws.com:3306/office_cafe?useUnicode=true&amp;characterEncoding=utf-8"></property>
+        <property name="username" value="admin"></property>
+        <property name="password" value="admin1234"></property>
 	</bean>
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
