@@ -38,21 +38,11 @@
   select * from t_board where board_no > 0 order by board_no desc
   </select>
  
-  <select id="selectBoardList" parameterType="PageVO" resultType="BoardVO">
-   SELECT * FROM t_board WHERE deleted_yn = 'N'
+  <select id="getListWithPaging" resultType="com.office.cafe.domain.BoardVO">
+   SELECT * FROM t_board WHERE board_no > 0
 		ORDER BY
 			board_no DESC,
 			board_created_date DESC
-		LIMIT
-			#{startPage}, #{contentsPerPage}
+		LIMIT #{pageNum}, #{amount}
   </select>
-
-  <select id="selectBoardTotalCount" parameterType="PageVO" resultType="int">
-		SELECT
-			COUNT(*)
-		FROM
-			t_board
-		WHERE
-			deleted_yn = 'N'
-	</select>
 </mapper>  

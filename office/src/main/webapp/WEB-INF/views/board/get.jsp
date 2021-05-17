@@ -56,13 +56,15 @@
 						<div class="form-group">
 							<label for="board_title">제목</label> <input type="text"
 								class="form-control" id="name" name="board_title"
-								value='<c:out value="${board.board_title}"/>' readonly="readonly">
+								value='<c:out value="${board.board_title}"/>'
+								readonly="readonly">
 						</div>
 
 						<div class="form-group">
 							<label for="board_creator_id">작성자</label> <input type="text"
 								class="form-control" id="name" name="board_creator_id"
-								value='<c:out value="${board.board_creator_id}"/>' readonly="readonly">
+								value='<c:out value="${board.board_creator_id}"/>'
+								readonly="readonly">
 						</div>
 
 						<div class="form-group">
@@ -74,12 +76,14 @@
 
 						<hr>
 
-						<button type="submit" class="btn btn-primary">저장</button>
-						<button data-oper='modify' class="btn btn-primary"
-						onclick="location.href='/board/modify?board_no=<c:out value="${board.board_no}"/>'">수정</button>
-						<button data-oper='delete' class="btn btn-primary"
-						onclick="location.href='/board/list'">목록</button>
-						<button data-oper='delete' class="btn btn-primary">삭제</button>
+						<button data-oper='modify' class="btn btn-default">Modify</button>
+						<button data-oper='list' class="btn btn-info">List</button>
+
+						<form id='operForm' action="/board/modify" method="get">
+							<input type='hidden' id='board_no' name='board_no'
+								value='<c:out value="${board.board.no}"/>'>
+						</form>
+
 					</div>
 				</div>
 			</div>
@@ -88,6 +92,26 @@
 		<div id="rightbox"></div>
 	</div>
 	<script src="${root}/resources/js/texteditor.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			var operForm = $("#operForm");
+
+			$("button[data-oper='modify']").on("click", function(e) {
+
+				operForm.attr("action", "/board/modify").submit();
+
+			});
+
+			$("button[data-oper='list']").on("click", function(e) {
+
+				operForm.find("#board_no").remove();
+				operForm.attr("action", "/board/list")
+				operForm.submit();
+
+			});
+		});
+	</script>
 </body>
 
 

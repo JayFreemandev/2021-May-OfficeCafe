@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.office.cafe.domain.BoardVO;
-import com.office.cafe.domain.PageVO;
+import com.office.cafe.domain.Criteria;
 import com.office.cafe.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -41,22 +41,17 @@ public class BoardServiceimpl implements BoardService {
 		return mapper.delete(board_no) == 1;
 	}
 
+	/*
 	@Override
 	public List<BoardVO> getList() {
 		return mapper.getList();
 	}
+	 */
+	
 
 	@Override
-	public List<BoardVO> geteListPage(PageVO page) {
-		List<BoardVO> boardList = Collections.emptyList();
-
-		int boardTotalCount = mapper.selectBoardTotalCount(page);
-
-		if (boardTotalCount > 0) {
-			boardList = mapper.selectBoardList(page);
-		}
-
-		return boardList;
+	public List<BoardVO> geteList(Criteria criteria) {
+		return mapper.getListWithPaging(criteria);
 	}
 
 }

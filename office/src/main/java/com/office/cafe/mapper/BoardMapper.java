@@ -3,7 +3,7 @@ package com.office.cafe.mapper;
 import java.util.List;
 
 import com.office.cafe.domain.BoardVO;
-import com.office.cafe.domain.PageVO;
+import com.office.cafe.domain.Criteria;
 
 public interface BoardMapper {
 	
@@ -19,8 +19,5 @@ public interface BoardMapper {
 
 	public void insertSelectKey(BoardVO board);
 	
-	public List<BoardVO> selectBoardList(PageVO page);
-	
-	public int selectBoardTotalCount(PageVO page);
-	
+	public List<BoardVO> getListWithPaging(Criteria criteria);	
 	}
