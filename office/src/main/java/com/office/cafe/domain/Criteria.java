@@ -1,5 +1,8 @@
 package com.office.cafe.domain;
 
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,6 +26,8 @@ public class Criteria {
 	    this.pageNum = pageNum;
 	    this.amount = amount;
 	  }
+	  
+	  
 	  
 	  public String[] getTypeArr() {
 	    

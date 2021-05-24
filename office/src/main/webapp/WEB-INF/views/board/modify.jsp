@@ -39,67 +39,68 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Board Register</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-			<!-- /.row -->
 
-			<div class="container mt-4 mb-4">
-				<div class="row justify-content-md-center">
 					<form role="form" action="/board/modify" method="post">
-						<div class="col-lg-12">
-							<h1 class="h2 mb-4">Submit issue</h1>
-							<div class="form-group">
-								<label for="board_no">글번호</label> <input type="text"
-									class="form-control" id="name" name="board_no"
-									value='<c:out value="${board.board_no}"/>' readonly="readonly">
-							</div>
-							<div class="form-group">
-								<label for="board_title">제목</label> <input type="text"
-									class="form-control" id="name" name="board_title"
-									value='<c:out value="${board.board_title}"/>'>
-							</div>
-
-							<div class="form-group">
-								<label for="board_creator_id">작성자</label> <input type="text"
-									class="form-control" id="name" name="board_creator_id"
-									value='<c:out value="${board.board_creator_id}"/>'
-									readonly="readonly">
-							</div>
-
-							<div class="form-group">
-								<label>내용</label><br>
-								<textarea id="editor" name="board_contents" rows="3"
-									name='contents'><c:out
-										value="${board.board_contents}" /></textarea>
-							</div>
-
-							<div class="form-group">
-								<label>RegDate</label> <input class="form-control"
-									name='regDate'
-									value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.board_created_date}" />'
-									readonly="readonly">
-							</div>
-
-							<div class="form-group">
-								<label>Update Date</label> <input class="form-control"
-									name='updateDate'
-									value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.board_update_date}" />'
-									readonly="readonly">
-							</div>
-
-							<hr>
-							<button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>
-							<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-							<button type="submit" data-oper='list' class="btn btn-info">List</button>
+					<input type='hidden' name='amount' value='<c:out value="${criteria.amount}"/>'>
+					<input type='hidden' name='pageNum' value='<c:out value="${criteria.pageNum}"/>'>
+					<input
+								type='hidden' name='pageNum'
+								value='<c:out value="${pageMaker.criteria.pageNum}"/>' /> <input
+								type='hidden' name='amount'
+								value='<c:out value="${pageMaker.criteria.amount}"/>' />
+					
+						<h1 class="h2 mb-4">Submit issue</h1>
+						<div class="form-group">
+							<label for="board_no">글번호</label> <input type="text"
+								class="form-control" id="name" name="board_no"
+								value='<c:out value="${board.board_no}"/>' readonly="readonly">
 						</div>
+						<div class="form-group">
+							<label for="board_title">제목</label> <input type="text"
+								class="form-control" id="name" name="board_title"
+								value='<c:out value="${board.board_title}"/>'>
+						</div>
+
+						<div class="form-group">
+							<label for="board_creator_id">작성자</label> <input type="text"
+								class="form-control" id="name" name="board_creator_id"
+								value='<c:out value="${board.board_creator_id}"/>'
+								readonly="readonly">
+						</div>
+
+						<div class="form-group">
+							<label>내용</label><br>
+							<textarea id="editor" name="board_contents" rows="3"
+								name='contents'><c:out
+									value="${board.board_contents}" /></textarea>
+						</div>
+
+						<div class="form-group">
+							<label>RegDate</label> <input class="form-control" name='regDate'
+								value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.board_created_date}" />'
+								readonly="readonly">
+						</div>
+
+						<div class="form-group">
+							<label>Update Date</label> <input class="form-control"
+								name='updateDate'
+								value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.board_update_date}" />'
+								readonly="readonly">
+						</div>
+
+						<hr>
+						<button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>
+						<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+						<button type="submit" data-oper='list' class="btn btn-info">List</button>
+
 					</form>
 				</div>
 			</div>
-
-			<!-- /.row -->
 		</div>
-		<div id="rightbox"></div>
+
+		<!-- /.row -->
+
+	<div id="rightbox"></div>
 	</div>
 	<script src="${root}/resources/js/texteditor.js"></script>
 	<script type="text/javascript">
@@ -108,9 +109,7 @@
 
 					var formObj = $("form");
 
-					$('button').on(
-							"click",
-							function(e) {
+					$('button').on("click", function(e) {
 
 								e.preventDefault();
 
@@ -123,17 +122,12 @@
 
 								} else if (operation === 'list') {
 									//move to list
-									formObj.attr("action", "/board/list").attr(
-											"method", "get");
+									formObj.attr("action", "/board/list").attr("method", "get");
 
-									var pageNumTag = $("input[name='pageNum']")
-											.clone();
-									var amountTag = $("input[name='amount']")
-											.clone();
-									var keywordTag = $("input[name='keyword']")
-											.clone();
-									var typeTag = $("input[name='type']")
-											.clone();
+									var pageNumTag = $("input[name='pageNum']").clone();
+									var amountTag = $("input[name='amount']").clone();
+									var keywordTag = $("input[name='keyword']").clone();
+									var typeTag = $("input[name='type']").clone();
 
 									formObj.empty();
 
