@@ -47,10 +47,12 @@ public class ReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 		
-	 @GetMapping(value = "/pages/{bid}/{page}", 
-			 produces = "application/json")
+	 @GetMapping(value = "/pages/{bid}/{page}",  
+			 produces = {
+					 MediaType.APPLICATION_XML_VALUE,
+					 MediaType.APPLICATION_JSON_UTF8_VALUE })
 	 
-		public @ResponseBody ResponseEntity<List<ReplyVO>> getList(
+		public ResponseEntity<List<ReplyVO>> getList(
 					 @PathVariable("bid") Integer bid, 
 			 		 @PathVariable("page") int page)
 			  {
@@ -62,7 +64,9 @@ public class ReplyController {
 		}
 	 
 	 @GetMapping(value = "/{rid}", 
-			 	produces = "application/json")
+			 produces = { MediaType.APPLICATION_XML_VALUE, 
+					 	MediaType.APPLICATION_JSON_UTF8_VALUE })
+
 	 
 		public ResponseEntity<ReplyVO> get(@PathVariable("rid") Integer rid) {
 
