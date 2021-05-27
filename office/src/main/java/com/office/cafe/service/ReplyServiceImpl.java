@@ -1,13 +1,13 @@
 package com.office.cafe.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.office.cafe.domain.Criteria;
 import com.office.cafe.domain.ReplyPageDTO;
 import com.office.cafe.domain.ReplyVO;
+import com.office.cafe.mapper.BoardMapper;
 import com.office.cafe.mapper.ReplyMapper;
 
 import lombok.AllArgsConstructor;
@@ -19,8 +19,14 @@ public class ReplyServiceImpl implements ReplyService {
 	@Autowired
 	private ReplyMapper mapper;
 	
+	@Autowired
+	private BoardMapper boardMapper;
+	
+	@Transactional
 	@Override
 	public int register(ReplyVO reply) {
+	  
+	  boardMapper.updateReplyCnt(reply.getBid(), 1);
 		return mapper.insert(reply);
 
 	}
@@ -32,9 +38,11 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.update(reply);
 	}
 
+	@Transactional
 	@Override
 	public int remove(Integer rid) {
-		// TODO Auto-generated method stub
+		ReplyVO reply = mapper.read(rid);
+		boardMapper.updateReplyCnt(reply.getBid(), -1);
 		return mapper.delete(rid);
 	}
 

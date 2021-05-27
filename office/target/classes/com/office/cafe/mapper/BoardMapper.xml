@@ -5,6 +5,10 @@
 
 <mapper namespace="com.office.cafe.mapper.BoardMapper">
 
+  <update id="updateReplyCnt">
+    update t_board set replycnt = replycnt + #{amount} where board_no = #{bid}
+  </update>
+
 	<insert id="insert">
 		insert into t_board (board_title, board_contents, board_creator_id)
 		values (#{board_title} , #{board_contents} , #{board_creator_id} )
