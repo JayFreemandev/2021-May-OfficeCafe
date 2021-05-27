@@ -2,9 +2,8 @@ package com.office.cafe.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.office.cafe.domain.Criteria;
+import com.office.cafe.domain.ReplyPageDTO;
 import com.office.cafe.domain.ReplyVO;
 
 public interface ReplyService {
@@ -18,7 +17,7 @@ public interface ReplyService {
 
 	//public List<BoardVO> getList();
 	
-	public List<ReplyVO> getList(Integer bid, Criteria criteria);
+	public ReplyPageDTO getListPage(Integer bid, Criteria criteria);
 
-	public int getTotal(Criteria criteria);
+	public int getTotal(Integer bid);
 }

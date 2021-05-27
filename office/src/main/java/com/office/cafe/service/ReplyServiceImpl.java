@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.office.cafe.domain.Criteria;
+import com.office.cafe.domain.ReplyPageDTO;
 import com.office.cafe.domain.ReplyVO;
 import com.office.cafe.mapper.ReplyMapper;
 
@@ -39,9 +40,9 @@ public class ReplyServiceImpl implements ReplyService {
 
 
 	@Override
-	public int getTotal(Criteria criteria) {
+	public int getTotal(Integer bid) {
 		// TODO Auto-generated method stub
-		return mapper.getTotalCount(criteria);
+		return mapper.getCountByBno (bid);
 	}
 /*
 	@Override
@@ -51,10 +52,12 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 */
 	@Override
-	public List<ReplyVO> getList(Integer bid, Criteria criteria) {
-		// TODO Auto-generated method stub
-		return mapper.getListWithPaging(bid, criteria);
-	}
+  public ReplyPageDTO getListPage(Integer bid, Criteria criteria) {
+       
+    return new ReplyPageDTO(
+        mapper.getCountByBno(bid), 
+        mapper.getListWithPaging(bid, criteria));
+  }
 
 
 	@Override

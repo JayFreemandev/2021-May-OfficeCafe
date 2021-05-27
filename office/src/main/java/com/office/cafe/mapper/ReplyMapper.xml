@@ -29,7 +29,7 @@
 	</select>
 	
     <!-- 페이지에 해당하는 댓글 목록 조회 -->
-	<select id="getListWithPaging" resultType="com.office.cafe.domain.ReplyVO" parameterType="map">
+	<select id="getListWithPaging" resultType="com.office.cafe.domain.ReplyVO">
 		select *
 		from t_reply
 		where bid = #{bid}
@@ -37,7 +37,7 @@
 		LIMIT #{criteria.pageNum}, #{criteria.amount}
 	</select>
 	
-	<select id="getTotalCount" resultType="int">
+	<select id="getCountByBno"  resultType="int">
 		select count(bid)
 		from t_reply
 		where bid = #{bid}

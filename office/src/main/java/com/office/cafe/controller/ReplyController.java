@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.office.cafe.domain.Criteria;
+import com.office.cafe.domain.ReplyPageDTO;
 import com.office.cafe.domain.ReplyVO;
 import com.office.cafe.service.ReplyService;
 
@@ -52,16 +53,20 @@ public class ReplyController {
 					 MediaType.APPLICATION_XML_VALUE,
 					 MediaType.APPLICATION_JSON_UTF8_VALUE })
 	 
-		public ResponseEntity<List<ReplyVO>> getList(
+		public ResponseEntity<ReplyPageDTO> getList(
 					 @PathVariable("bid") Integer bid, 
 			 		 @PathVariable("page") int page)
 			  {
 		Criteria criteria = new Criteria(page,10);
 		
-		log.info("getList.................");
+		log.info("get Reply List bid: " + bid);
+
+    log.info("cri:" + criteria);
 		
-		return new ResponseEntity<>(service.getList(bid, criteria), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(bid, criteria), HttpStatus.OK);
 		}
+
+
 	 
 	 @GetMapping(value = "/{rid}", 
 			 produces = { MediaType.APPLICATION_XML_VALUE, 
