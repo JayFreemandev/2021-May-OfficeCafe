@@ -5,7 +5,7 @@
 
 <mapper namespace="com.office.cafe.mapper.BoardMapper">
 
-  <update id="updateReplyCnt">
+  <update id="updateReplyCnt" >
     update t_board set replycnt = replycnt + #{amount} where board_no = #{bid}
   </update>
 

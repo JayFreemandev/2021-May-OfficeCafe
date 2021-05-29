@@ -35,11 +35,11 @@ public class ReplyController {
 				consumes = "application/json", 
 				produces = { MediaType.TEXT_PLAIN_VALUE })
 		
-	public ResponseEntity<String> create(@RequestBody ReplyVO reply) {
+	public @ResponseBody ResponseEntity<String> create(@RequestBody ReplyVO reply) {
 
 		log.info("ReplyVO: " + reply);
 
-		int insertCount = service.register(reply);
+		int insertCount = service.register(reply); //여기인공?? 여기를 타고가면
 
 		log.info("Reply INSERT COUNT: " + insertCount);
 
