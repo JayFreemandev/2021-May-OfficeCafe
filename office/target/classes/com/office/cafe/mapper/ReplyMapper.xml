@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.office.cafe.mapper.ReplyMapper">
+
+	<!-- 댓글 삽입 -->
+	<insert id="insert">
+		insert into t_reply (rid, bid, reg_id, contents)
+		values(#{rid}, #{bid}, #{reg_id}, #{contents})
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="update">
+		update t_reply
+		set contents = #{contents},
+		reg_dt = CURRENT_TIMESTAMP
+		where rid = #{rid}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="delete" >
+	delete from t_reply where rid = #{rid}
+	</delete>
+	
+	<select id="read" resultType="ReplyVO">
+	select * from t_reply where rid = #{rid};
+	</select>
+	
+    <!-- 페이지에 해당하는 댓글 목록 조회 -->
+	<select id="getListWithPaging" resultType="com.office.cafe.domain.ReplyVO">
+		select *
+		from t_reply
+		where bid = #{bid}
+		order by rid desc
+		LIMIT #{criteria.pageNum}, #{criteria.amount}
+	</select>
+	
+	<select id="getCountByBno"  resultType="int">
+		select count(bid)
+		from t_reply
+		where bid = #{bid}
+	</select>	
+</mapper>

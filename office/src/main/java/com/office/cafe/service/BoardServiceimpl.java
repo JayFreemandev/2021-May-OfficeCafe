@@ -54,4 +54,9 @@ public class BoardServiceimpl implements BoardService {
 		return mapper.getListWithPaging(criteria);
 	}
 
+	@Override
+	public int getTotal(Criteria criteria) {
+		return mapper.getTotalCount(criteria);
+	}
+
 }

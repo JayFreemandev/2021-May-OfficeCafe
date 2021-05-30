@@ -1,5 +1,7 @@
 package com.office.cafe.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -7,33 +9,34 @@ import lombok.ToString;
 @ToString
 public class PageDTO {
 
-  private int startPage;
-  private int endPage;
-  private boolean prev, next;
+	private int startPage;
+	private int endPage;
+	private boolean prev, next;
 
-  private int total;
-  
-  private Criteria criteria;
+	private int total;
 
-  public PageDTO(Criteria criteria, int total) {
+	private Criteria criteria;
 
-    this.criteria = criteria;
-    this.total = total;
+	public PageDTO(Criteria criteria, int total) {
 
-    this.endPage = (int) (Math.ceil(criteria.getPageNum() / 10.0)) * 10;
+		this.criteria = criteria;
+		this.total = total;
 
-    this.startPage = this.endPage - 9;
+		this.endPage = (int) (Math.ceil(criteria.getPageNum() / 10.0)) * 10;
 
-    int realEnd = (int) (Math.ceil((total * 1.0) / criteria.getAmount()));
+		this.startPage = this.endPage - 9;
 
-    if (realEnd <= this.endPage) {
-      this.endPage = realEnd;
-    }
+		int realEnd = (int) (Math.ceil((total * 1.0) / criteria.getAmount()));
 
-    this.prev = this.startPage > 1;
+		if (realEnd <= this.endPage) {
+			this.endPage = realEnd;
+		}
 
-    this.next = this.endPage < realEnd;
-  }
-  
+		this.prev = this.startPage > 1;
+
+		this.next = this.endPage < realEnd;
+
+	}
+
+
 }
-

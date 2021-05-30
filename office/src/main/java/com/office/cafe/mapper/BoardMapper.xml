@@ -2,47 +2,95 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.office.cafe.mapper.BoardMapper">
-  
-  <insert id="insert">
-  insert into t_board (board_title, board_contents, board_creator_id)
-  values (#{board_title} , #{board_contents} , #{board_creator_id} )  
-  </insert>
-  
-  <select id="select" resultType="BoardVO">
-  select * from t_board where board_no = #{board_no}
-  </select>
-  
-  <update id="update">
-  update t_board set board_title = #{board_title}, board_contents= #{board_contents}
-  where board_no = #{board_no}
+
+  <update id="updateReplyCnt" >
+    update t_board set replycnt = replycnt + #{amount} where board_no = #{bid}
   </update>
-  
-  <insert id="insertSelectKey">
+
+	<insert id="insert">
+		insert into t_board (board_title, board_contents, board_creator_id)
+		values (#{board_title} , #{board_contents} , #{board_creator_id} )
+	</insert>
+
+	<select id="select" resultType="BoardVO">
+		select * from t_board where board_no = #{board_no}
+	</select>
+
+	<update id="update">
+		update t_board set board_title = #{board_title}, board_contents=
+		#{board_contents}
+		where board_no = #{board_no}
+	</update>
+
+	<insert id="insertSelectKey">
 
 		<selectKey keyProperty="board_no" order="BEFORE"
 			resultType="integer">
 			(select * from (select max(board_no)+1 from t_board)
 		</selectKey>
 
-		insert into t_board (board_no,board_title,board_contents, board_creator_id)
-		values (#{board_no}, #{board_title}, #{board_contents}, #{board_creator_id})
-  </insert>
-  
-  <delete id="delete">
-  delete from t_board where board_no = #{board_no}
-  </delete>
-  
-  <select id="getList" resultType="BoardVO">
-  select * from t_board where board_no > 0 order by board_no desc
-  </select>
- 
-  <select id="getListWithPaging" resultType="com.office.cafe.domain.BoardVO">
-   SELECT * FROM t_board WHERE board_no > 0
+		insert into t_board (board_no,board_title,board_contents,
+		board_creator_id)
+		values (#{board_no}, #{board_title},
+		#{board_contents}, #{board_creator_id})
+	</insert>
+
+	<delete id="delete">
+		delete from t_board where board_no = #{board_no}
+	</delete>
+
+	<select id="getList" resultType="BoardVO">
+		select * from t_board where board_no > 0 order by board_no desc
+	</select>
+
+
+	<select id="getListWithPaging"
+		resultType="com.office.cafe.domain.BoardVO">
+ <![CDATA[
+		SELECT * FROM t_board
+		WHERE
+
+ ]]>
+   <include refid="criteria"></include>
+ <![CDATA[
+		board_no > 0
+
 		ORDER BY
-			board_no DESC,
-			board_created_date DESC
+		board_no DESC,
+		board_created_date DESC
 		LIMIT #{pageNum}, #{amount}
-  </select>
+  ]]>
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+	
+		SELECT count(*) from t_board where
+		<include refid="criteria"/>
+		board_no > 0
+	
+	</select>
+
+<sql id="criteria">
+  <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+   <foreach item='type' collection="typeArr">
+    <trim prefix="OR">
+     <choose>
+		<when test="type == 'T'.toString()">
+		board_title like CONCAT('%',#{keyword},'%')
+		</when>
+		<when test="type == 'C'.toString()">
+		board_contents like CONCAT('%',#{keyword},'%')
+		</when>
+		<when test="type == 'W'.toString()">
+		board_creator_id like CONCAT('%',#{keyword},'%')
+		</when>
+     </choose>
+    </trim>
+   </foreach>
+  </trim>
+  
+  </sql>
+	
 </mapper>  

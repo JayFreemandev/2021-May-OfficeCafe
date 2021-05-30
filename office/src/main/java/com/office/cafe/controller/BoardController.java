@@ -3,6 +3,7 @@ package com.office.cafe.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,12 @@ public class BoardController {
 	public void list(Criteria criteria, Model model) {
 		log.info("list" + criteria);
 		model.addAttribute("list", service.geteList(criteria));
-		model.addAttribute("pageMaker", new PageDTO(criteria, 123));
+		int total = service.getTotal(criteria);
+		
+		log.info("total" + total);
+		
+		model.addAttribute("pageMaker", new PageDTO(criteria, total));
+		
 	}
 	
 	/*
@@ -63,26 +69,39 @@ public class BoardController {
 	 }
 	 
 	 @GetMapping({"/get", "/modify"})
-	 public void get(@RequestParam("board_no") Integer board_no, Model model) {
+	 public void get(@RequestParam("board_no") Integer board_no, Model model, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("/get or modify");
 		 model.addAttribute("board", service.get(board_no));
 	 }
 	 
 	 @PostMapping("/modify")
-	 public String modify(BoardVO board, RedirectAttributes redirec) {
+	 public String modify(BoardVO board, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("modify: "+ board);
 		 if (service.modify(board)) {
 			 redirec.addFlashAttribute("result", "success");
 		 }
+		 
+		 redirec.addAttribute("pageNum", criteria.getPageNum());
+		 redirec.addAttribute("amount", criteria.getAmount());
+		 redirec.addAttribute("type", criteria.getType());
+		 redirec.addAttribute("keyword", criteria.getKeyword());
+		 
 		 return "redirect:/board/list";
 	 }
 	 
-	 @GetMapping("/remove")
-	 public void remove(@RequestParam("board_no") Integer board_no, RedirectAttributes redirec) {
+	 @PostMapping("/remove")
+	 public String remove(@RequestParam("board_no") Integer board_no, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("remove: " + board_no);
 		 if (service.remove(board_no)) {
 			 redirec.addFlashAttribute("result", "success");
 		 }
+		 
+		 redirec.addAttribute("pageNum", criteria.getPageNum());
+		 redirec.addAttribute("amount", criteria.getAmount());
+		 redirec.addAttribute("type", criteria.getType());
+		 redirec.addAttribute("keyword", criteria.getKeyword());
+		 
+		 return "redirect:/board/list";
 	 }
 	 
 }
