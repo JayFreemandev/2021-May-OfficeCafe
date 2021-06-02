@@ -39,9 +39,10 @@ public class ReplyController {
 
 		log.info("ReplyVO: " + reply);
 
-		int insertCount = service.register(reply); //여기인공?? 여기를 타고가면
-
-		log.info("Reply INSERT COUNT: " + insertCount);
+		int insertCount = service.register(reply); //여기인공?? 여기를 타고가면 저기 방금 오타났어 js  그니까 저기를 타야 인서트가 일다 ㄴ되는거 아니냐 akwdma맞음
+		                                           // 내가 하고싶은 말은 너가 저렇게 에이젝스를 모아놨으니까
+		// 이 서비스 레지스터에서 값 인서트를 해주기전에 그 에이젝스가 동작을 한다는거야 ㅇㅋ? ㅇㅋ
+ 		log.info("Reply INSERT COUNT: " + insertCount);
 
 		return insertCount == 1  
 				?  new ResponseEntity<>("success", HttpStatus.OK)
@@ -52,7 +53,7 @@ public class ReplyController {
 			 produces = {
 					 MediaType.APPLICATION_XML_VALUE,
 					 MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 
+	
 		public ResponseEntity<ReplyPageDTO> getList(
 					 @PathVariable("bid") Integer bid, 
 			 		 @PathVariable("page") int page)

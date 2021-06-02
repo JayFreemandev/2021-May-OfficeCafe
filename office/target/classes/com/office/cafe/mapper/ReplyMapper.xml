@@ -7,14 +7,15 @@
 
 	<!-- 댓글 삽입 -->
 	<insert id="insert">
-		insert into t_reply (rid, bid, reg_id, contents)
-		values(#{rid}, #{bid}, #{reg_id}, #{contents})
-	</insert>
+		insert into t_reply (rid, bid, reg_id, contents, depth, reorder)
+		values(0, #{bid}, #{reg_id}, #{contents}, #{depth}, #{reorder})
+	</insert> 
 	
 	<!-- 댓글 수정 -->
 	<update id="update">
 		update t_reply
-		set contents = #{contents},
+		set 
+		contents = #{contents},
 		reg_dt = CURRENT_TIMESTAMP
 		where rid = #{rid}
 	</update>
@@ -33,7 +34,7 @@
 		select *
 		from t_reply
 		where bid = #{bid}
-		order by rid desc
+		order by rid asc
 		LIMIT #{criteria.pageNum}, #{criteria.amount}
 	</select>
 	

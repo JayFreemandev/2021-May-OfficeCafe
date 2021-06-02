@@ -15,12 +15,15 @@
             side by side -->
 <style>
 body {
-	background: #e0e2e4;
+	font-family: open sans,malgun gothic,nanum gothic,dotum,arial,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 #leftbox {
 	float: left;
-	background: #e0e2e4;
+	background: #555b61;
 	width: 20%;
 	height: 100%;
 }
@@ -28,14 +31,14 @@ body {
 #middlebox {
 	text-align: reft;
 	float: left;
-	background: white;
+	background: #fff;
 	width: 60%;
 	height: 100%;
 }
 
 #rightbox {
 	float: right;
-	background: #e0e2e4;
+	background: #555b61;
 	width: 20%;
 	height: 100%;
 }
@@ -61,12 +64,12 @@ body {
 
 #b, #w {
 	float: left;
-	width: 50%;
-	background: white;
-	margin: 0px;
-	height: 100%;
-	background-position: 0% 0%;
-	background-repeat: repeat repeat;
+  width: 460px;
+  margin: 4px 8px;
+  background-image: none;
+    height: 520px;
+    background-position: 0% 0%;
+    background-repeat: repeat repeat;
 }
 
 #c, #e {

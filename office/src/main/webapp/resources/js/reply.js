@@ -8,7 +8,9 @@ var replyService = (function() {
       type: 'post',
       url: '/replies/new',
       data: JSON.stringify(reply),
+      dataType: 'json',
       contentType: "application/json; charset=utf-8",
+      async: false,
       success: function(result, status, xhr) {
         if (callback) {
           callback(result);
@@ -48,6 +50,7 @@ var replyService = (function() {
     $.ajax({
       type: 'delete',
       url: '/replies/' + rid,
+      async: false,
       success: function(deleteReuslt, status, xhr) {
         if (callback) {
           callback(deleteReuslt);
@@ -71,6 +74,7 @@ var replyService = (function() {
       url: '/replies/' + reply.rid,
       data: JSON.stringify(reply),
       contentType: "application/json; charset=utf-8",
+      async: false,
       success: function(result, status, xhr) {
         if (callback) {
           callback(result);

@@ -134,7 +134,7 @@ tinymce.init({
 						<div class="panel-body">
 							<ul class="chat">
 								<!-- start reply -->
-								<li class="left clearfix" data-rid='12'>
+								<li class="left clearfix" data-rid='12' data-reorder='0' data-depth='0'>
 									<div>
 										<div class="header">
 											<strong class="primary-font">user00</strong> <small class="pull-right text-muted">2021-02-18 13: 13</small>
@@ -182,6 +182,7 @@ tinymce.init({
 				<div class="modal-footer">
 					<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
 					<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
+					<button id='modalAddReplyBtn' type="button" class="btn btn-default">Reply</button>
 					<button id='modalRegisterBtn' type="button" class="btn btn-danger" data-dismiss="modal">Register</button>
 					<button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
@@ -200,7 +201,6 @@ tinymce.init({
       var bnoValue = '<c:out value="${board.board_no}"/>';
       var replyUL = $(".chat");
       var timeValue;
-      
       showList(1);
 
       function showList(page) {
@@ -226,10 +226,12 @@ tinymce.init({
           }
 
           for (var i = 0, len = list.length || 0; i < len; i++) {
-            str += "<li class='left clearfix' data-rid='"+list[i].rid+"'>";
+            str +="<div style=margin-left:calc("+40*list[i].depth+"px)><ul>"
+            str += "<li class='left clearfix' data-rid='"+list[i].rid+"' data-depth='"+list[i].depth+"' data-reorder='"+list[i].reorder+"'>";
             str += "  <div><div class='header'><strong class='primary-font'>[" + list[i].rid + "] " + list[i].reg_id + "</strong>";
             str += "    <small class='pull-right text-muted'>" + replyService.displayTime(list[i].reg_dt) + "</small></div>";
             str += "    <p>" + list[i].contents + "</p></div></li>";
+            str +="</ul></div>"
           }
 
           replyUL.html(str);
@@ -298,12 +300,17 @@ tinymce.init({
 
       var modal = $(".modal");
       var modalInputReply = modal.find("input[name='contents']");
+      console.log(modalInputReply);
       var modalInputReplyer = modal.find("input[name='reg_id']");
+      console.log(modalInputReplyer);
       var modalInputReplyDate = modal.find("input[name='reg_dt']");
-
+      console.log(modalInputReplyDate);
       var modalModBtn = $("#modalModBtn");
       var modalRemoveBtn = $("#modalRemoveBtn");
       var modalRegisterBtn = $("#modalRegisterBtn");
+      var modalAddReplyBtn = $("#modalAddReplyBtn");
+      
+      var reorder;
 
       $("#modalCloseBtn").on("click", function(e) {
 
@@ -323,12 +330,21 @@ tinymce.init({
       });
 
       modalRegisterBtn.on("click", function(e) {
-
+        var contents = modalInputReply.val();
+        var reg_id = modalInputReplyer.val();
         var reply = {
-        contents : modalInputReply.val(),
-        reg_id : modalInputReplyer.val(),
-        bid : bnoValue
+        'contents' : contents,
+        
+        'reg_id' : reg_id,
+ 
+        'bid' : bnoValue,
+        
+        'depth' : 0,
+        
+        'reorder' : 0
+
         };
+        
         replyService.add(reply, function(result) {
 
           alert(result);
@@ -337,37 +353,80 @@ tinymce.init({
           modal.modal("hide");
 
           //showList(1);
-          showList(pageNum);
+          showList(-1);
 
+        });
+        
+        replyService.update(reply, function(result){
+          
+          alert(result);
+          modal.modal("hide");
+          showList(pageNum);
+          
         });
 
       });
 
-      //댓글 조회 클릭 이벤트 처리 
+     
+      
       $(".chat").on("click", "li", function(e) {
-
         var rid = $(this).data("rid");
-
-        replyService.get(rid, function(reply) { // 해당 댓글번호, 내용 가져오기
-
+        reorder = $(this).data("rid");
+        console.log("reorder"+reorder);
+        replyService.get(rid, function(reply) { // 해당 댓글번호에 해당하는 내용 가져오기
+        
           modalInputReply.val(reply.contents);
           modalInputReplyer.val(reply.reg_id);
           modalInputReplyDate.val(replyService.displayTime(reply.reg_dt)).attr("readonly", "readonly");
           modal.data("rid", reply.rid);
-
+          modal.data("depth", reply.redepth);
+          modal.data("reorder", reply.reorder);
+          
+          console.log("reply:"+ JSON.stringify(reply));
+          
           modal.find("button[id !='modalCloseBtn']").hide();
           modalModBtn.show();
           modalRemoveBtn.show();
+          modalAddReplyBtn.show();
 
           $(".modal").modal("show");
 
         });
 
       });
-      
+     
+      modalAddReplyBtn.on("click", function(e){
+        
+        var contents = modalInputReply.val();
+        var reg_id = modalInputReplyer.val();
+        var reply = {
+            'contents' : contents,
+            'reg_id' : reg_id,
+            'bid' : bnoValue,
+            'depth' : 1,
+            'reorder': reorder
+            };
+        
+            replyService.add(reply, function(result) {
+
+              console.log("reorder 답글:"+ JSON.stringify(reorder));
+              alert(result);
+
+              modal.find("input").val("");
+              modal.modal("hide");
+
+              //showList(1);
+              showList(pageNum);
+            });
+        
+      });
+     
       modalModBtn.on("click", function(e){
         
-        var reply = {rid:modal.data("rid"), contents: modalInputReply.val()};
+        var reply = {
+            rid: modal.data("rid"),
+            reg_id: modalInputReplyer.val(),
+            contents: modalInputReply.val()};
         replyService.update(reply, function(result){
               
           alert(result);

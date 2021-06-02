@@ -12,4 +12,7 @@ public class ReplyVO {
 	private String reg_id;
 	private Date reg_dt;
 	private Date edit_dt;
+	private Integer depth;
+	private Integer reorder;
+
 }
