@@ -1,6 +1,8 @@
 package com.office.cafe.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -11,11 +13,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Log4j
 @Controller
 public class UploadController {
-  
+  private boolean checkImageType(File file) {
+    try {
+      String contentType = Files.probeContentType(file.toPath());
+      return contentType.startsWith("image");
+    } catch (Exception e) {
+      // TODO: handle exception
+    }
+    return false;
+  }
   
   private String getFolder() { // 한 폴더에 쌓이면 속도 저하 해결책
     SimpleDateFormat simpleDataFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,11 +75,15 @@ public class UploadController {
       
       uploadFileName = uuid.toString() + "_" + uploadFileName;
       
-      //File saveFile = new File(uploadFolder, uploadFileName);
-      File saveFile = new File(uploadPath, uploadFileName);
-      
-      try {
+     try {
+       //File saveFile = new File(uploadFolder, uploadFileName);
+        File saveFile = new File(uploadPath, uploadFileName);
         multipartFile.transferTo(saveFile);
+        
+        if (checkImageType(saveFile)) {
+          FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_"+uploadFileName));
+          Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+        }
       }catch (Exception e) {
         log.error(e.getMessage());
       }
