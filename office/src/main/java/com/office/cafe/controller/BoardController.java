@@ -26,7 +26,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Criteria criteria, Model model) {
+	public String list(Criteria criteria, Model model) {
 		log.info("list" + criteria);
 		model.addAttribute("list", service.geteList(criteria));
 		int total = service.getTotal(criteria);
@@ -35,6 +35,7 @@ public class BoardController {
 		
 		model.addAttribute("pageMaker", new PageDTO(criteria, total));
 		
+		return "index";
 	}
 	
 	/*
