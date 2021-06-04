@@ -3,6 +3,7 @@ package com.office.cafe.service;
 import java.util.List;
 
 import com.office.cafe.domain.BoardVO;
+import com.office.cafe.domain.Criteria;
 
 
 public interface BoardService {
@@ -15,6 +16,9 @@ public interface BoardService {
 
 	public boolean remove(Integer board_no);
 
-	public List<BoardVO> getList();
+	//public List<BoardVO> getList();
+	
+	public List<BoardVO> geteList(Criteria criteria);
 
+	public int getTotal(Criteria criteria);
 }

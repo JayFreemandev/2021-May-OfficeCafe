@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<style>
+.navbar-brand {
+  font-family: cursive;
+}
+</style>
 <body class = "sb-nav-fixed">
      <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-         <a class="navbar-brand" href="index.html">OfficeWorkerCafe</a>
+         <a class="navbar-brand" href="index.html">OfficeWorkerCafe.com</a>
          <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
          <!-- 로그인창 간격 조절-->

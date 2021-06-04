@@ -55,6 +55,38 @@
                                       <a class="nav-link" href="500.html">500 Page</a>
                                   </nav>
                               </div>
+                              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="pagesCollapse1" aria-expanded="false" aria-controls="pagesCollapse1">
+                                  개드립
+                                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
+                              <div class="collapse" id="pagesCollapse1" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                  <nav class="sb-sidenav-menu-nested nav">
+                                      <a class="nav-link" href="401.html">개드립</a>
+                                      <a class="nav-link" href="404.html">개드립 인기글</a>
+                                  </nav>
+                              </div>
+                              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="pagesCollapse2" aria-expanded="false" aria-controls="pagesCollapse2">
+                                  유저 개드립
+                                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
+                              <div class="collapse" id="pagesCollapse2" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                  <nav class="sb-sidenav-menu-nested nav">
+                                      <a class="nav-link" href="401.html">유저 개드립</a>
+                                      <a class="nav-link" href="404.html">유저 개드립 인기글</a>
+                                  </nav>
+                              </div>
+                              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="pagesCollapse3" aria-expanded="false" aria-controls="pagesCollapse3">
+                                  읽을 거리
+                                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
+                              <div class="collapse" id="pagesCollapse3" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                  <nav class="sb-sidenav-menu-nested nav">
+                                      <a class="nav-link" href="401.html">전체 글 보기</a>
+                                      <a class="nav-link" href="404.html">인기글</a>
+                                      <a class="nav-link" href="404.html">기묘한 이야기</a>
+                                      <a class="nav-link" href="404.html">호러 괴담</a>
+                                  </nav>
+                              </div>
                           </nav>
                       </div>
                       <div class="sb-sidenav-menu-heading">Addons</div>
