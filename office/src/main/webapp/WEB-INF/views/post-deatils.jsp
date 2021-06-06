@@ -1,5 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -11,11 +16,11 @@
     <meta name="robots" content="index, nofollow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="${root}/resources/css/style.css" rel="stylesheet" type="text/css">
     <!-- <link href="css/animate.css" rel="stylesheet" type="text/css"> -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+    <link href="${root}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${root}/resources/css/responsive.css" rel="stylesheet" type="text/css">
      </head>
 
 <body>
@@ -132,11 +137,7 @@
                                     <button type="button" class="tolltip-button  thumbs-down2" data-toggle="tooltip" data-placement="bottom" title="Dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button> <span class="single-question-vote-result">+22</span> </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="share-tags-page-content12092">
-                        <div class="l-share2093"> <i class="fa fa-share" aria-hidden="true"> Share</i> </div>
-                        <div class="R-tags309"> <i class="fa fa-tags" aria-hidden="true"> Wordpress, Question, Developer</i> </div>
-                    </div>
+                    </div>                
                     <div class="author-details8392">
                         <div class="author-img202l"> <img src="image/images.png" alt="image">
                             <div class="au-image-overlay text-center"> <a href="#"><i class="fa fa-plus-square-o" aria-hidden="true"></i></a> </div>
@@ -144,15 +145,8 @@
                    <h5>About the Author</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra auctor neque. Nullam lobortis, sapien vitae lobortis tristique.</p>
                     
-                </span> </div>
-                    <div class="related3948-question-part">
-                        <h3>Related questions</h3>
-                        <hr>
-                        <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This Is My Second Poll Question</a></p>
-                        <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This is my third Question</a></p>
-                        <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This is my fourth Question</a></p>
-                        <p><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>This is my fifth Question</a></p>
-                    </div>
+                </span> 
+                </div>
                     <div class="comment-list12993">
                         <div class="container">
                             <div class="row">
@@ -220,23 +214,6 @@
                     </div>
                     <div class="comment289-box">
                         <h3>Leave A Reply</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="replay-input-name42389">
-                                    <p>Name*</p>
-                                    <input type="text" class="name-box24894 input238-design" placeholder="Name"> </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="replay-email-input89298">
-                                    <p>E-mail*</p>
-                                    <input type="text" class="name-box24894 input238-design" placeholder="E-mail"> </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="replay-input-websit128923">
-                                    <p>Website*</p>
-                                    <input type="text" class="name-box24894 input238-design" placeholder="Website"> </div>
-                            </div>
                             <div class="col-md-12">
                                 <div class="post9320-box">
                                     <input type="text" class="comment-input219882" placeholder="Enter Your Post"> </div>
@@ -509,9 +486,9 @@
         </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/npm.js"></script>
+    <script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
+    <script src="${root}/resources/js/bootstrap.min.js"></script>
+    <script src="${root}/resources/js/npm.js"></script>
 </body>
 
 </html>

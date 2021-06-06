@@ -11,7 +11,12 @@
 	<div class='uploadDiv'>
 		<input type="file" name="uploadFile" multiple>
 	</div>
+	
+  <div class='uploadResult'>
+    <ul>
 
+    </ul>
+  </div>
 	<button id="uploadBtn">Upload</button>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
@@ -35,7 +40,19 @@
       return true;
     }
     
+    function showUploadedFile(uploadResultArr) {
 
+      var str = "";
+
+      $(uploadResultArr).each(function(i, obj) {
+
+      str += "<li>" + obj.fileName + "</li>";
+
+      });
+
+      uploadResult.append(str);
+      }
+      
     var cloneObj = $(".uploadDiv").clone();
 
     $("#uploadBtn").on("click", function(e) {
@@ -70,6 +87,7 @@
 
         alert("Uploaded");
         console.log(result);
+        showUploadedFile(result);
         $(".uploadDiv").html(cloneObj.html()); // 빈 div를 복사후 업로드시 다시 빈버튼 만들기 초기화
       }
       });

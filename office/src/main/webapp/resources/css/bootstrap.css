@@ -112,11 +112,15 @@ button,
 input,
 optgroup,
 select,
+
 textarea {
   margin: 0;
   font: inherit;
   color: inherit;
+  width: 600px;
+  height: 300px;
 }
+
 button {
   overflow: visible;
 }
