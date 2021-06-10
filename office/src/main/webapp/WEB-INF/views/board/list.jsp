@@ -17,10 +17,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
 <title>Ask Me</title>
-<link href="root/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="root/resources/css/style.css" rel="stylesheet" type="text/css">
+<link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${root}/resources/css/style.css" rel="stylesheet" type="text/css">
 <!-- <link href="css/animate.css" rel="stylesheet" type="text/css"> -->
-<link href="root/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="${root}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -1983,9 +1983,9 @@
 		</div>
 	</section>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="resources/js/jquery-3.1.1.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/npm.js"></script>
+	<script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
+	<script src="${root}/resources/js/bootstrap.min.js"></script>
+	<script src="${root}/resources/js/npm.js"></script>
 </body>
 
 </html>

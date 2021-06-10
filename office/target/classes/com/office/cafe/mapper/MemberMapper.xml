@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.office.cafe.MemberMapper">
+<mapper namespace="com.office.cafe.mapper.MemberMapper">
 
 
-  <resultMap type="com.office.cafe.MemberVO" id="memberMap">
+  <resultMap type="com.office.cafe.domain.MemberVO" id="memberMap">
     <id property="userid" column="userid"/>
     <result property="userid" column="userid"/>
     <result property="userpw" column="userpw"/>
@@ -28,5 +28,10 @@ FROM
   tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid 
 WHERE mem.userid = #{userid} 
   </select>
+  
+  <insert id="insert">
+    insert into tbl_member (userid, userpw, username)
+    values (#{userid} , #{userpw} , #{username} )
+  </insert>
 
 </mapper>
