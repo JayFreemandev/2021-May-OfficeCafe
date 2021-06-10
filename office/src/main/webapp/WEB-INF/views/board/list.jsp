@@ -17,10 +17,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
 <title>Ask Me</title>
-<link href="root/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="root/resources/css/style.css" rel="stylesheet" type="text/css">
+<link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${root}/resources/css/style.css" rel="stylesheet" type="text/css">
 <!-- <link href="css/animate.css" rel="stylesheet" type="text/css"> -->
-<link href="root/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="${root}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -196,49 +196,49 @@
 							</div>
 
 							<div class="question-type2033">
-							<c:forEach items="${list}" var="board">
-                <div class="row">
-                  <div class="col-md-1">
-                    <div class="left-user12923 left-user12923-repeat">
-                      <a href="#"><img src="resources/image/images.png" alt="image"> </a> <a href="#"><i class="fa fa-check" aria-hidden="true"></i></a>
-                    </div>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="right-description893">
-                      <div id="que-hedder2983">
-                        <h3>
-                          <a class='move' href='<c:out value="${board.board_no}"/>'> <c:out value="${board.board_title}" />
-                           <b>[<c:out value="${board.replyCnt}"/>]</b>
-                          </a>
-                        </h3>
-                      </div>
-                      <div class="ques-details10018">
-                        <p><c:out value="${board.board_creator_id}" /></p>
-                      </div>
-                      <hr>
-                      <div class="ques-icon-info3293">
-                        <a href="#"><i class="fa fa-star" aria-hidden="true"> 5 </i> </a> 
-                        <a href="#"><i class="fa fa-clock-o" aria-hidden="true"> <fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_created_date}" /></i></a> 
-                        <a href="#"><i class="fa fa-bug" aria-hidden="true"> Report</i></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="ques-type302">
-                      <a href="#">
-                        <button type="button" class="q-type238">
-                          <i class="fa fa-comment" aria-hidden="true"> 333335 answer</i>
-                        </button>
-                      </a> <a href="#">
-                        <button type="button" class="q-type23 button-ques2973">
-                          <i class="fa fa-user-circle-o" aria-hidden="true"> <c:out value="${board.board_read}" /></i>
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                </c:forEach>
-              </div>
+								<c:forEach items="${list}" var="board">
+									<div class="row">
+										<div class="col-md-1">
+											<div class="left-user12923 left-user12923-repeat">
+												<a href="#"><img src="resources/image/images.png" alt="image"> </a> <a href="#"><i class="fa fa-check" aria-hidden="true"></i></a>
+											</div>
+										</div>
+										<div class="col-md-9">
+											<div class="right-description893">
+												<div id="que-hedder2983">
+													<h3>
+														<a class='move' href='<c:out value="${board.board_no}"/>'> <c:out value="${board.board_title}" /> <b>[<c:out value="${board.replyCnt}" />]
+														</b>
+														</a>
+													</h3>
+												</div>
+												<div class="ques-details10018">
+													<p>
+														<c:out value="${board.board_creator_id}" />
+													</p>
+												</div>
+												<hr>
+												<div class="ques-icon-info3293">
+													<a href="#"><i class="fa fa-star" aria-hidden="true"> 5 </i> </a> <a href="#"><i class="fa fa-clock-o" aria-hidden="true"> <fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_created_date}" /></i></a> <a href="#"><i class="fa fa-bug" aria-hidden="true"> Report</i></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="ques-type302">
+												<a href="#">
+													<button type="button" class="q-type238">
+														<i class="fa fa-comment" aria-hidden="true"> 333335 answer</i>
+													</button>
+												</a> <a href="#">
+													<button type="button" class="q-type23 button-ques2973">
+														<i class="fa fa-user-circle-o" aria-hidden="true"> <c:out value="${board.board_read}" /></i>
+													</button>
+												</a>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
 
 							<nav aria-label="Page navigation">
 								<ul class="pagination">
@@ -1983,10 +1983,9 @@
 		</div>
 	</section>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="resources/js/jquery-3.1.1.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/npm.js"></script>
+	<script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
+	<script src="${root}/resources/js/bootstrap.min.js"></script>
+	<script src="${root}/resources/js/npm.js"></script>
 </body>
 
 </html>
-													
