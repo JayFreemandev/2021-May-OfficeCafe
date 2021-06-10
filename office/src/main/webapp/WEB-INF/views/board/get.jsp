@@ -26,8 +26,6 @@
 <script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
 <script src="${root}/resources/js/bootstrap.min.js"></script>
 <script src="${root}/resources/js/npm.js"></script>
-<script src="${root}/resources/css/tank.css"></script>
-<script src="${root}/resources/js/tank.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 <style>
 #txtEditor {
