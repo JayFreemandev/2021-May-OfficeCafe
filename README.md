@@ -1,7 +1,8 @@
 <p align="center"> 
-  <img src="gif/Pacman Logo2.jpg" alt="Pacman Logo" width="80px" height="80px">
+  [<img src="https://user-images.githubusercontent.com/72185011/121693670-51589680-cb04-11eb-8779-cad94b829b39.JPG" alt="Pacman Logo" width="800px" height="400px"/>](https://youtu.be/uLR1RNqJ1Mw?t=0s)
 </p>
-<h1 align="center"> Pacman Agent </h1>
+[![Video Label](https://user-images.githubusercontent.com/72185011/121693670-51589680-cb04-11eb-8779-cad94b829b39.JPG)]
+<h1 align="center"> Pacman Agent </h1> 
 <h3 align="center"> COMP 6721 - Artificial Intelligence </h3>
 <h5 align="center"> Project Assignment 1 - <a href="https://www.concordia.ca/">Concordia University</a> (Winter 2020) </h5>
 
