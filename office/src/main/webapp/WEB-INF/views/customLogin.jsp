@@ -37,7 +37,7 @@
 				</form:form>
         <form:form method='get' action="/register">
          <div>
-         <a href="register"><div class="button">Create an account</div></a>
+         <a href="register"><input class="button">Create an account</></a>
          </div>
         </form:form>
 				</div>

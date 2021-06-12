@@ -14,7 +14,8 @@ import com.office.cafe.mapper.BoardMapper;
 import com.office.cafe.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
-
+import lombok.extern.log4j.Log4j;
+@Log4j
 @Service
 @AllArgsConstructor
 public class MemberServiceimpl implements MemberService {
@@ -24,15 +25,16 @@ public class MemberServiceimpl implements MemberService {
 
   @Override
   public void register(MemberVO vo) {
+   log.info(vo);
    mapper.insert(vo);
+   mapper.authInsert(vo);
   }
 
   @Override
-  public BoardVO get(String userid) {
-    // TODO Auto-generated method stub
-    return null;
+  public MemberVO login(MemberVO vo) {
+    log.info(vo);
+    return mapper.login(vo);
   }
-
   @Override
   public boolean modify(String userid) {
     // TODO Auto-generated method stub

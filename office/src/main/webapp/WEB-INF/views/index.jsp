@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,12 @@
 						<ul>
 							<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>안내</a></li>
 							<li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>도움</a></li>
+							<sec:authorize access="isAnonymous()">
 							<li><a href="logIn.html"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+							<li><a href="logIn.html"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
+							</sec:authorize>
 						</ul>
 					</div>
 				</div>
@@ -906,24 +912,42 @@
 						</a></li>
 					</div>
 					<!--              login part-->
+					<sec:authorize access="isAnonymous()">
 					<div class="login-part2389">
 						<h4>Login</h4>
-						<div class="input-group300">
-							<span><i class="fa fa-user" aria-hidden="true"></i></span>
-							<input type="text" class="namein309" placeholder="Username">
-						</div>
-						<div class="input-group300">
-							<span><i class="fa fa-lock" aria-hidden="true"></i></span>
-							<input type="password" class="passin309" placeholder="Name">
-						</div>
-						<a href="#">
-							<button type="button" class="userlogin320">Log In</button>
-						</a>
-						<div class="rememberme">
-							<label> <input type="checkbox" checked="checked"> Remember Me
-							</label> <a href="#" class="resbutton3892">Register</a>
-						</div>
-					</div>
+            <form:form action="/login" method="post">
+            <div class="input-group300">
+              <span><i class="fa fa-user" aria-hidden="true"></i></span>
+              <input type="text" class="namein309" placeholder="Username" name='username'>
+            </div>
+            <div class="input-group300">
+              <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+              <input type="password" class="passin309" placeholder="Name" name='password'>
+            </div>
+              <input class="userlogin320" type="submit" value="login"/>
+            <div class="rememberme">
+              <label> <input type="checkbox" checked="checked" name="remember-me"> Remember Me
+              </label> <a href="/register" class="resbutton3892">Register</a>
+            </div>
+            </form:form>
+          </div>
+          </sec:authorize>
+          
+          <sec:authorize access="isAuthenticated()">
+          <div class="login-part2389">
+          <form:form action="/customLogout" method="post">
+            <h4>Login</h4>
+            <div class="input-group300">
+              <span><i class="fa fa-user1" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <p>어서오고, <sec:authentication property="principal.member.username"/>  </p>
+              <p></p>
+            </div>
+              <input class="userlogin320" type="submit" value="logout"/>
+            </form:form>
+          </div>
+          </sec:authorize>
 					<!--              highest part-->
 					<div class="highest-part302">
 						<h4>Highest Points</h4>
