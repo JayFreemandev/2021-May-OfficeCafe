@@ -19,7 +19,7 @@
     <li><a href="#overview"> ➤ Overview</a></li>
     <li><a href="#demo"> ➤ Demo link</a></li>
     <li><a href="#buildwith"> ➤ Build with</a></li>
-    <li><a href="#site"> ➤ Site </a></li>
+    <li><a href="#db"> ➤ Site </a></li>
     <li><a href="#main"> ➤ Main page </a></li>
     <li><a href="#board"> ➤ Board </a></li>
     <li><a href="#reply"> ➤ Reply </a></li>
@@ -70,8 +70,12 @@ Here is a working live demo :  https://iharsh234.github.io/WebApp/
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <!-- DEMO -->
-<h2 id="site"> :cloud: Site</h2>
+<h2 id="db"> :cloud: DB</h2>
+Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
 
+![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <!-- DEMO -->
 <h2 id="main"> :cloud: MainPage</h2>
 Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
