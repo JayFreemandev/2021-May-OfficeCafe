@@ -76,6 +76,7 @@ Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol wil
 ![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 <!-- DEMO -->
 <h2 id="main"> :cloud: MainPage</h2>
 Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
@@ -90,6 +91,7 @@ This is board
 
 ![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
 
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <h2 id="reply"> :cloud: Reply</h2>
 This is Reply
@@ -104,6 +106,7 @@ This is login
 
 ![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
 
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <!-- DEMO -->
 <h2 id="register"> :cloud: Register</h2>
