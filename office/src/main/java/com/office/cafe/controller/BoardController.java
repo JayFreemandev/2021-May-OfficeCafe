@@ -1,5 +1,6 @@
 package com.office.cafe.controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,6 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
-
 	private BoardService service;
 	
 	@GetMapping("/list")
@@ -38,24 +38,6 @@ public class BoardController {
 		return "index";
 	}
 	
-	/*
-	 @GetMapping("/list")
-	 public String list(Model model) {
-	 log.info("list");
-	 model.addAttribute("list", service.getList());
-	 return "/board/list";
-	}
-	 */
-	
-	/*
-	@GetMapping("/list")
-	public String openBoardList(@ModelAttribute("page") PageVO page, Model model) {
-		List<BoardVO> boardList = service.geteListPage(page);
-		model.addAttribute("boardList", boardList);
-
-		return "/board/list";
-	}
-	 */
 	 @GetMapping("/register")
 		public void register() {
 

@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -1741,22 +1743,37 @@
 					<!--              login part-->
 					<div class="login-part2389">
 						<h4>Login</h4>
+						<form:form action="/login" method="post">
 						<div class="input-group300">
 							<span><i class="fa fa-user" aria-hidden="true"></i></span>
-							<input type="text" class="namein309" placeholder="Username">
+							<input type="text" class="namein309" placeholder="Username" name='username'>
 						</div>
 						<div class="input-group300">
 							<span><i class="fa fa-lock" aria-hidden="true"></i></span>
-							<input type="password" class="passin309" placeholder="Name">
+							<input type="password" class="passin309" placeholder="Name" name='password'>
 						</div>
-						<a href="#">
-							<button type="button" class="userlogin320">Log In</button>
-						</a>
+							<input class="button" type="submit" value="login"/>
 						<div class="rememberme">
 							<label> <input type="checkbox" checked="checked"> Remember Me
 							</label> <a href="#" class="resbutton3892">Register</a>
 						</div>
+						</form:form>
 					</div>
+					
+					<sec:authorize access="isAuthenticated()">
+					<div class="login-part2389">
+					<form:form action="/logout" method="post">
+            <h4>Login</h4>
+            <div class="input-group300">
+              <span><i class="fa fa-user" aria-hidden="true"></i></span>
+              <p>어서오고, <sec:authentication property="principal.member.username"/>  </p>
+            </div>
+            <a href="#">
+              <input class="button" type="submit" value="logout"/>
+            </a>
+            </form:form>
+          </div>
+          </sec:authorize>
 					<!--              highest part-->
 					<div class="highest-part302">
 						<h4>Highest Points</h4>
