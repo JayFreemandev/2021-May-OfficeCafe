@@ -76,21 +76,25 @@ Here is a working live demo :  https://iharsh234.github.io/WebApp/
   Board
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
-<ul>
+</ul>
+  
 <ul>  
   Reply
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
-<ul>
+</ul>
+  
 <ul>
   Paging
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
-<ul>  
+</ul>  
   Search
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
-<ul> 
+</ul>
+
+<ul>  
   Login
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
