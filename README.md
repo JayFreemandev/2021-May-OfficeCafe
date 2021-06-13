@@ -70,7 +70,7 @@ Here is a working live demo :  https://iharsh234.github.io/WebApp/
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <!-- PROJECT FILES DESCRIPTION -->
-<h2 id="buildwith"> :floppy_disk: Main function</h2>
+<h2 id="buildwith"> :floppy_disk: Main functions</h2>
 
 <ul>
   Board
@@ -88,7 +88,9 @@ Here is a working live demo :  https://iharsh234.github.io/WebApp/
   Paging
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
-</ul>  
+</ul>
+
+<ul>
   Search
   <li><b>search.py</b> - Where all of the search algorithms reside.</li>
   <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
