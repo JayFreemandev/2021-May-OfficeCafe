@@ -69,6 +69,35 @@ Here is a working live demo :  https://iharsh234.github.io/WebApp/
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
+<!-- PROJECT FILES DESCRIPTION -->
+<h2 id="buildwith"> :floppy_disk: Main function</h2>
+
+<ul>
+  Board
+  <li><b>search.py</b> - Where all of the search algorithms reside.</li>
+  <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
+<ul>
+<ul>  
+  Reply
+  <li><b>search.py</b> - Where all of the search algorithms reside.</li>
+  <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
+<ul>
+<ul>
+  Paging
+  <li><b>search.py</b> - Where all of the search algorithms reside.</li>
+  <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
+<ul>  
+  Search
+  <li><b>search.py</b> - Where all of the search algorithms reside.</li>
+  <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
+<ul> 
+  Login
+  <li><b>search.py</b> - Where all of the search algorithms reside.</li>
+  <li><b>searchAgents.py</b> - Where all of the search-based agents reside.</li>
+</ul>
+
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <!-- DEMO -->
 <h2 id="db"> :cloud: DB</h2>
 Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
