@@ -22,7 +22,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
 <style>
-#email, #userid, #userpw, #userpw2, #username {
+#email, #userpw, #userpw2, #username {
 	padding: 10px 20px;
 	border: 1px solid #999;
 	border-radius: 3px;
@@ -36,6 +36,17 @@
 #email_check_input {
 	padding: 10px 20px;
 	width: 69%;
+}
+
+#userid {
+	padding: 10px 20px;
+	width: 65%;
+	margin-bottom: 20px;
+}
+
+#check {
+	padding: 10px 20px;
+	width: 23%;
 }
 
 #email_check_button {
@@ -133,6 +144,8 @@
 					<div class="id_wrap">
 						<div class="id_input_box">
 							<input class="id_input" name="userid" placeholder="userid" id="userid">
+							<input type="button" id="check" value="중복체크">
+							<span id="idCheck" class="idCheck"></span>
 						</div>
 						<span class="id_input_re_1">사용 가능한 아이디입니다.</span> <span class="id_input_re_2">아이디가 이미 존재합니다.</span> <span class="final_id_ck">아이디를 입력해주세요.</span>
 					</div>
@@ -189,7 +202,9 @@
 	<script>
     var code = "";
     var mailnumCheck = false;
-    
+    var idx = false;
+    var getCheck = RegExp(/^[a-zA-Z0-9]{4,12}$/);
+
     // 유효성 검사 함수 
     function checks() {
 
@@ -200,13 +215,20 @@
       if ($("#userid").val() == "") {
         alert("아이디 입력바람");
         $("#userid").focus();
-        return false;
+         return false;
       }
 
       //아이디 유효성검사 
       if (!getCheck.test($("#userid").val())) {
-        alert("형식에 맞게 입력해주세요");
+        alert("아이디최소 4글자");
         $("#userid").val("");
+        $("#userid").focus();
+        return false;
+      }
+      
+    //아이디 유효성검사 
+      if (idx == false) {
+        alert("아이디 중복확인");
         $("#userid").focus();
         return false;
       }
@@ -266,20 +288,21 @@
 
       //이메일 유효성 검사 
       if (!getMail.test($("#email").val())) {
-        alert("이메일형식에 맞게 입력해주세요")
+        alert("이메일형식에 맞게 입력해주세요");
         $("#email").val("");
         $("#email").focus();
         return false;
       }
-      
+
       /* 최종 유효성 검사 */
-      if(mailnumCheck == true){
+      if (mailnumCheck) {
         $("#submit").attr("action", "/register");
-        $("#submit").submit(); 
+        $("#submit").submit();
       }
-      
+
       return false;
     }
+    
 
     /* 인증번호 이메일 전송 */
     $(".mail_check_button").click(function() {
@@ -300,8 +323,7 @@
       }
       });
     });
-    
-    /* */
+
     /* 인증번호 비교 */
     $(".mail_check_input").blur(function() {
 
@@ -319,6 +341,30 @@
       }
 
     });
+    
+    $('#check').click(function(){
+      $.ajax({
+        url: "/qwer",
+        type: "GET",
+        data:{
+          "userid":$('#userid').val()
+        },
+        success: function(data){
+          if(data == "낫중복" && $.trim($('#userid').val()) != '' ){
+            idx=true;
+            $('#userid').attr("readonly",true);
+            alert("아이디 사용 가능");
+          }else{
+            alert("아이디 중복, 사용불가");
+          }
+        },
+        error: function(){
+          alert("서버에러");
+        }
+      });
+    });
+
+
    
   </script>
 

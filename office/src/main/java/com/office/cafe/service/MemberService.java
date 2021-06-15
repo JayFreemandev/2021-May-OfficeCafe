@@ -12,8 +12,11 @@ public interface MemberService {
 	public void register(MemberVO vo);
 
 	public MemberVO login(MemberVO vo);
-
+	
 	public boolean modify(String userid);
 
 	public boolean remove(String userid);
+
+  public MemberVO idCheck(String userid);
+
 }

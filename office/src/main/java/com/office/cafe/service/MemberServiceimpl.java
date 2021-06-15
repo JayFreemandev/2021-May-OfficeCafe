@@ -47,5 +47,12 @@ public class MemberServiceimpl implements MemberService {
     return false;
   }
 
+  @Override
+  public MemberVO idCheck(String userid) {
+    log.info("아이디 서비스 진입 아이디 서비스 진입 아이디 서비스 진입아이디 서비스 진입 :" + userid);
+    return mapper.idCheck(userid);
+  }
+
+
 
 }
