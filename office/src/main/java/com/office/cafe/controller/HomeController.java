@@ -22,7 +22,7 @@ public class HomeController {
 	public String home() {
 		
 		
-		return "indexx";
+		return "/board/list";
 	}
 	
 	@RequestMapping("/detail")

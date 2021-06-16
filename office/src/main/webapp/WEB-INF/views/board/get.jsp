@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -26,11 +28,12 @@
 <script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
 <script src="${root}/resources/js/bootstrap.min.js"></script>
 <script src="${root}/resources/js/npm.js"></script>
+<script src="${root}/resources/css/get.css"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 <style>
 #txtEditor {
-	width: 800px;
-	height: 300px;
+  width: 800px;
+  height: 300px;
 }
 
 .animation-container {
@@ -966,10 +969,8 @@
      opacity: 0;
   }
 }
- 
 </style>
 </head>
-
 <body>
 	<div class="top-bar">
 		<div class="container">
@@ -1008,7 +1009,7 @@
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"><img src="image/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="#"><img src="${root}/resources/image/logo.png" alt="Logo"></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -1100,7 +1101,12 @@
 									</button>
 									<span class="single-question-vote-result">+22</span>
 								</div>
-								<button data-oper='modify' class="fa fa-question-circle">Modify</button>
+								<sec:authentication property="principal" var="pinfo"/>
+								  <sec:authorize access="isAuthenticated()">
+								    <c:if test="${pinfo.username eq board.board_creator_id}">
+								      <button data-oper='modify' class="fa fa-question-circle">Modify</button>
+								    </c:if>
+								  </sec:authorize>
 								<button data-oper='list' class="fa fa-question-circle">List</button>
 
 								<form id='operForm' action="/board/modify" method="get">
@@ -1251,7 +1257,9 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<i class="fa fa-comments fa-fw"></i> Reply
+										<sec:authorize access="isAuthenticated()">
 										<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
+										</sec:authorize>
 									</div>
 
 									<!--  /.panel-heading -->
@@ -1315,88 +1323,41 @@
           </a></li>
         </div>
         <!--              login part-->
-        <div class="login-part2389">
-          <h4>Login</h4>
-          <div class="input-group300">
-            <span><i class="fa fa-user" aria-hidden="true"></i></span>
-            <input type="text" class="namein309" placeholder="Username">
-          </div>
-          <div class="input-group300">
-            <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-            <input type="password" class="passin309" placeholder="Name">
-          </div>
-          <a href="#">
-            <button type="button" class="userlogin320">Log In</button>
-          </a>
-          <div class="rememberme">
-            <label> <input type="checkbox" checked="checked"> Remember Me
-            </label> <a href="#" class="resbutton3892">Register</a>
-          </div>
-        </div>
-        <!--              highest part-->
-        <div class="highest-part302">
-          <h4>Highest Points</h4>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
+          <sec:authorize access="isAuthenticated()">
+          <div class="login-part2389">
+          <form:form action="/customLogout" method="post">
+            <h4>Login</h4>
+            <div class="input-group300">
+              <span><i class="fa fa-user1" aria-hidden="true"></i></span>
             </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
-          </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
+            <div>
+              <p>어서오고, <sec:authentication property="principal.member.username"/>  </p>
+              <p></p>
             </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
+              <input class="userlogin320" type="submit" value="logout"/>
+            </form:form>
           </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+          </sec:authorize>
+          <!--              highest part-->
+          <div class="highest-part302">
+            <h4>Highest Points</h4>
+            <c:forEach items="${recentList}" var="recentBoard">
+            <div class="pints-wrapper">
+              <div class="left-user3898">
+                <a href="#"><img src="${root}/resources/image/images.png" alt="Image"></a>
+                <div class="imag-overlay39">
+                  <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
               </div>
+              <span class="points-details938"> <a href="#"><h5><c:out value="${recentBoard.board_creator_id}" /></h5>
+              </a> <a href="#" class="designetion439">열정</a>
+                <p>206 points</p>
+              </span>
             </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
+            </c:forEach>
+            <hr>
           </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
-          </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
-          </div>
-        </div>
-        <!--               end of Highest points -->
+          <!--               end of Highest points -->
         <!--          start tags part-->
         <div class="tags-part2398">
           <h4>Tags</h4>
@@ -1414,49 +1375,23 @@
         </div>
         <!--          End tags part-->
         <!--        start recent post  -->
-        <div class="recent-post3290">
-          <h4>Recent Post</h4>
-          <div class="post-details021">
-            <a href="#"><h5>How much do web developers</h5></a>
-            <p>I am thinking of pursuing web developing as a career & was ...</p>
-            <small style="color: #848991">July 16, 2017</small>
+          <div class="recent-post3290">
+            <h4>Recent Post</h4>
+              <c:forEach items="${recentList}" var="recentBoard">
+            <div class="post-details021">         
+              <a href="#"><h5><c:out value="${recentBoard.board_title}" /></h5></a>
+              <p><c:out value="${recentBoard.board_contents}" /></p>
+              <small style="color: #848991"><fmt:formatDate pattern="yyyy-MM-dd" value="${recentBoard.board_created_date}" /></small>
+            </div>
+              </c:forEach>
+            <hr>
           </div>
-          <hr>
-          <div class="post-details021">
-            <a href="#"><h5>How much do web developers</h5></a>
-            <p>I am thinking of pursuing web developing as a career & was ...</p>
-            <small style="color: #848991">July 16, 2017</small>
-          </div>
-          <hr>
-          <div class="post-details021">
-            <a href="#"><h5>How much do web developers</h5></a>
-            <p>I am thinking of pursuing web developing as a career & was ...</p>
-            <small style="color: #848991">July 16, 2017</small>
-          </div>
-        </div>
-        <!--       end recent post    -->
+          <!--       end recent post    -->
       </aside>
     </div>
     </div>
   </section>
   <!--    footer -->
-  <div class="footer-search">
-    <div class="container">
-      <div class="row">
-        <div id="custom-search-input">
-          <div class="input-group col-md-12">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <input type="text" class="  search-query form-control user-control30" placeholder="Search here...." />
-            <span class="input-group-btn">
-              <button class="btn btn-danger" type="button">
-                <span class=" glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <section class="footer-part">
     <div class="container">
       <div class="row">

@@ -2,6 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -37,21 +38,6 @@
 							<li><a href="logIn.html"><i class="fa fa-user" aria-hidden="true"></i>Login Area</a></li>
 						</ul>
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="navbar-serch-right-side">
-						<form class="navbar-form" role="search">
-							<div class="input-group add-on">
-								<input class="form-control form-control222" placeholder="Search" name="srch-term" id="srch-term" type="text">
-								<div class="input-group-btn">
-									<button class="btn btn-default btn-default2913" type="submit">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-
 				</div>
 			</div>
 		</div>
@@ -124,7 +110,8 @@
 						<form role="form" action="/board/register" method="post">
 							<div class="username-part940">
 								<span class="form-description43">작성자 </span>
-								<input type="text" name="board_creator_id" class="username029" placeholder="Enter your Name">
+								<input type="text" name="board_creator_id" class="username029" placeholder="Enter your Name"
+								 value='<sec:authentication property="principal.username"/>' readonly="readonly">
 							</div>
 							<div class="question-title39">
 								<span class="form-description433">제목 </span>
@@ -333,25 +320,6 @@
 			</div>
 		</div>
 	</section>
-
-	<!--    footer -->
-	<div class="footer-search">
-		<div class="container">
-			<div class="row">
-				<div id="custom-search-input">
-					<div class="input-group col-md-12">
-						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-						<input type="text" class="  search-query form-control user-control30" placeholder="Search here...." />
-						<span class="input-group-btn">
-							<button class="btn btn-danger" type="button">
-								<span class=" glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<section class="footer-part">
 		<div class="container">

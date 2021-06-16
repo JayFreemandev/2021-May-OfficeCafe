@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<sec:authentication property="principal" var="pinfo"/>
+
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <c:import url="/WEB-INF/views/include/head_meta.jsp" />
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -139,8 +142,12 @@ tinymce.init({
 						</div>
 
 						<hr>
+						<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.username eq board.board_created_id}">
 						<button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>
 						<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+						</c:if>
+						</sec:authorize>
 						<button type="submit" data-oper='list' class="btn btn-info">List</button>
 
 					</form>

@@ -41,13 +41,11 @@ public class BoardServiceimpl implements BoardService {
 		return mapper.delete(board_no) == 1;
 	}
 
-	/*
-	@Override
-	public List<BoardVO> getList() {
-		return mapper.getList();
-	}
-	 */
 	
+	@Override
+	public List<BoardVO> getRecentList() {
+		return mapper.getRecentList();
+	}
 
 	@Override
 	public List<BoardVO> geteList(Criteria criteria) {

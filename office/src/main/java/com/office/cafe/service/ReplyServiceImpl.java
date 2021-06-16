@@ -41,7 +41,6 @@ public class ReplyServiceImpl implements ReplyService {
 
 	}
 
-
 	@Override
 	public int modify(ReplyVO reply) {
 		// TODO Auto-generated method stub

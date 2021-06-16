@@ -1,5 +1,8 @@
 package com.office.cafe.controller;
 
+import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +32,8 @@ public class BoardController {
 	public String list(Criteria criteria, Model model) {
 		log.info("list" + criteria);
 		model.addAttribute("list", service.geteList(criteria));
+		List<BoardVO> recentList = service.getRecentList(); 
+		model.addAttribute("recentList", recentList);
 		int total = service.getTotal(criteria);
 		
 		log.info("total" + total);
@@ -39,11 +44,13 @@ public class BoardController {
 	}
 	
 	 @GetMapping("/register")
+	 @PreAuthorize("isAuthentificated()")
 		public void register() {
 
 	}
 	
 	 @PostMapping("/register")
+	 @PreAuthorize("isAuthentificated()")
 	 public String register(BoardVO board, RedirectAttributes redirec) {
 		 log.info("register: "+ board);
 		 service.register(board);
@@ -56,7 +63,7 @@ public class BoardController {
 		 log.info("/get or modify");
 		 model.addAttribute("board", service.get(board_no));
 	 }
-	 
+	 @PreAuthorize("principal.username == #board.board_creator_id")
 	 @PostMapping("/modify")
 	 public String modify(BoardVO board, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("modify: "+ board);
@@ -71,7 +78,7 @@ public class BoardController {
 		 
 		 return "redirect:/board/list";
 	 }
-	 
+	 @PreAuthorize("principal.username == #board_creator_id")
 	 @PostMapping("/remove")
 	 public String remove(@RequestParam("board_no") Integer board_no, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("remove: " + board_no);
