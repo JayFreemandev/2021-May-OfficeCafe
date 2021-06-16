@@ -27,8 +27,6 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
 <script src="${root}/resources/js/bootstrap.min.js"></script>
-<script src="${root}/resources/js/npm.js"></script>
-<script src="${root}/resources/css/get.css"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 <style>
 #txtEditor {
@@ -1648,7 +1646,16 @@
       var modalRemoveBtn = $("#modalRemoveBtn");
       var modalRegisterBtn = $("#modalRegisterBtn");
       var modalAddReplyBtn = $("#modalAddReplyBtn");
-
+  
+      var reg_id = null;
+      
+      <sec:authorize access="isAuthenticated()">
+      reg_id ='<sec:authentication property="principal.username"/>';
+      </sec:authorize>
+      
+      var csrfHeaderName = "${_csrf.headerName}";
+      var csrfTokenValue = "${_csrf.token}";
+      
       var reorder;
 
       $("#modalCloseBtn").on("click", function(e) {
@@ -1659,6 +1666,7 @@
       $("#addReplyBtn").on("click", function(e) {
 
         modal.find("input").val("");
+        modal.find("input[name='reg_id']").val(reg_id);
         modalInputReplyDate.closest("div").hide();
         modal.find("button[id !='modalCloseBtn']").hide();
 
@@ -1667,14 +1675,17 @@
         $(".modal").modal("show");
 
       });
-
+      
+      //Ajax spring security header
+      $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+      });
+      
       modalRegisterBtn.on("click", function(e) {
-        var contents = modalInputReply.val();
-        var reg_id = modalInputReplyer.val();
         var reply = {
-        'contents' : contents,
+        'contents' : modalInputReply.val(),
 
-        'reg_id' : reg_id,
+        'reg_id' : modalInputReplyer.val(),
 
         'bid' : bnoValue,
 
@@ -1683,7 +1694,6 @@
         'reorder' : 0
 
         };
-
         replyService.add(reply, function(result) {
 
           alert(result);
@@ -1691,19 +1701,9 @@
           modal.find("input").val("");
           modal.modal("hide");
 
-          //showList(1);
           showList(-1);
 
         });
-
-        replyService.update(reply, function(result) {
-
-          alert(result);
-          modal.modal("hide");
-          showList(pageNum);
-
-        });
-
       });
 
       $(".chat").on("click", "li", function(e) {
@@ -1759,12 +1759,25 @@
       });
 
       modalModBtn.on("click", function(e) {
-
+        var originalRegId = modalInputReplyer.val();
         var reply = {
         rid : modal.data("rid"),
-        reg_id : modalInputReplyer.val(),
-        contents : modalInputReply.val()
+        contents : modalInputReply.val(),
+        reg_id : originalRegId
         };
+        
+        if(!reg_id){
+          alert("로그인후 수정 가능");
+          modal.modal("hide");
+          return;
+        }
+        
+        if(reg_id != originalRegId){
+          alert("자신의 댓글만 수정 가능");
+          modal.modal("hide");
+          return;
+        }
+        
         replyService.update(reply, function(result) {
 
           alert(result);
@@ -1777,12 +1790,28 @@
 
       modalRemoveBtn.on("click", function(e) {
 
-        var reply = {
-          contents : modalInputReply.val()
-        };
         var rid = modal.data("rid");
-
-        replyService.remove(rid, function(result) {
+        
+        console.log("댓글번호: " + rid);
+        console.log("댓글작성자: " + reg_id);
+        
+        if(!reg_id){
+          alert("로그인후 삭제 가능");
+          modal.modal("hide");
+          return;
+        }
+        
+        var originalRegId = modalInputReplyer.val();
+        
+        console.log("댓글 원작성자: " + originalRegId);
+        
+        if(reg_id != originalRegId){
+          alert("자신의 댓글만 삭제가 가능");
+          modal.modal("hide");
+          return;
+        }
+        
+        replyService.remove(rid, originalRegId, function(result) {
 
           alert(result);
           modal.modal("hide");
@@ -1792,7 +1821,7 @@
 
       });
 
-    });
+});
   </script>
 
 	<script type="text/javascript">

@@ -27,12 +27,12 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 	private BoardService service;
+	List<BoardVO> recentList = service.getRecentList(); 
 	
 	@GetMapping("/list")
 	public String list(Criteria criteria, Model model) {
 		log.info("list" + criteria);
 		model.addAttribute("list", service.geteList(criteria));
-		List<BoardVO> recentList = service.getRecentList(); 
 		model.addAttribute("recentList", recentList);
 		int total = service.getTotal(criteria);
 		
@@ -62,7 +62,9 @@ public class BoardController {
 	 public void get(@RequestParam("board_no") Integer board_no, Model model, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("/get or modify");
 		 model.addAttribute("board", service.get(board_no));
+		 model.addAttribute("recentList", recentList);
 	 }
+	 
 	 @PreAuthorize("principal.username == #board.board_creator_id")
 	 @PostMapping("/modify")
 	 public String modify(BoardVO board, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
