@@ -1,3 +1,8 @@
+#txtEditor {
+  width: 800px;
+  height: 300px;
+}
+
 .animation-container {
    background: #e2d4c2;
    height: 454px;
@@ -931,4 +936,3 @@
      opacity: 0;
   }
 }
- 

@@ -16,7 +16,7 @@ public interface BoardService {
 
 	public boolean remove(Integer board_no);
 
-	//public List<BoardVO> getList();
+	public List<BoardVO> getRecentList();
 	
 	public List<BoardVO> geteList(Criteria criteria);
 
