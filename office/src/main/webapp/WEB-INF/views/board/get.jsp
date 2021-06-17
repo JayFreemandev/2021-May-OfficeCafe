@@ -976,78 +976,75 @@
 				<div class="col-md-6">
 					<div class="navbar-menu-left-side239">
 						<ul>
-							<li><a href="contact_us.html" target="_blank"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contact</a></li>
-							<li><a href="#" target="_blank"><i class="fa fa-headphones" aria-hidden="true"></i>Support</a></li>
-							<li><a href="logIn.html" target="_blank"><i class="fa fa-user" aria-hidden="true"></i>Login Area</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="navbar-serch-right-side">
-						<form class="navbar-form" role="search">
-							<div class="input-group add-on">
-								<input class="form-control form-control222" placeholder="Search" name="srch-term" id="srch-term" type="text">
-								<div class="input-group-btn">
-									<button class="btn btn-default btn-default2913" type="submit">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
+              <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>안내</a></li>
+              <li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>도움</a></li>
+              <sec:authorize access="isAnonymous()">
+              <li><a href="/customLogin"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
+              </sec:authorize>
+              <sec:authorize access="isAuthenticated()">
+              <li><a href="/customLogout"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
+              </sec:authorize>
+            </ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="top-menu-bottom932">
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#"><img src="${root}/resources/image/logo.png" alt="Logo"></a>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="ask_question.html">Ask Question</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Question <span class="caret"></span></a>
-							<ul class="dropdown-menu animated zoomIn">
-								<li><a href="category.html">Question Category</a></li>
-								<li><a href="category.html">HTML</a></li>
-								<li><a href="category.html">CSS</a></li>
-								<li><a href="category.html">Javascript</a></li>
-								<li><a href="category.html">Bootstrap</a></li>
-							</ul></li>
-
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
-							<ul class="dropdown-menu animated zoomIn">
-								<li><a href="blog.html">Blog </a></li>
-							</ul></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Page <span class="caret"></span></a>
-							<ul class="dropdown-menu animated zoomIn">
-								<li><a href="logIn.html">Login</a></li>
-								<li><a href="contact_us.html"> Contact Us</a></li>
-								<li><a href="ask_question.html"> Ask Question </a></li>
-								<li><a href="post-deatils.html"> Post-Details </a></li>
-								<li><a href="user.html">All User</a></li>
-								<li><a href="#"> User Question </a></li>
-								<li><a href="#"> Category </a></li>
-								<li><a href="#"> 404 </a></li>
-							</ul></li>
-						<li><a href="contact_us.html">Contact us</a></li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-			<!-- /.container-fluid -->
-		</nav>
-	</div>
+	<!-- ==========header mega navbar=======-->
+  <div class="top-menu-bottom932">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/board/list"><img src="${root}/resources/image/logo.png" alt="Logo"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/board/list" class="pull-left">홈</a></li>
+            <li><a href="/board/register">물어봐</a></li>
+            <!--
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">카테고리 <span class="caret"></span></a>
+              <ul class="dropdown-menu animated zoomIn">
+                <li><a href="category.html">Question Category</a></li>
+                <li><a href="category.html">HTML</a></li>
+                <li><a href="category.html">CSS</a></li>
+                <li><a href="category.html">Javascript</a></li>
+                <li><a href="category.html">Bootstrap</a></li>
+              </ul></li>
+            <!--  
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">test <span class="caret"></span></a>
+              <ul class="dropdown-menu animated zoomIn">
+                <li><a href="blog.html">Blog </a></li>
+              </ul></li>
+            
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">page <span class="caret"></span></a>
+              <ul class="dropdown-menu animated zoomIn">
+                <li><a href="logIn.html">Login</a></li>
+                <li><a href="contact_us.html"> Contact Us</a></li>
+                <li><a href="ask_question.html"> Ask Question </a></li>
+                <li><a href="post-deatils.html"> Post-Details </a></li>
+                <li><a href="user.html">All User</a></li>
+                <li><a href="user_question.html"> User Question </a></li>
+                <li><a href="category.html"> Category </a></li>
+                <li><a href="#"> 404 </a></li>
+              </ul></li>
+            -->   
+            <li><a href="/customLogin">로그인</a></li>
+            <li><a href="/customLogout">회원가입</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </div>
+  
 	<section class="header-descriptin329">
 		<div class="container">
 			<h3>Post Details</h3>
@@ -1547,6 +1544,7 @@
         page : page || 1
         }, function(replyCnt, list) {
 
+       
           console.log("replyCnt 댓글수: " + replyCnt);
           console.log("list 댓글목록: " + list);
 
@@ -1701,7 +1699,7 @@
           modal.find("input").val("");
           modal.modal("hide");
 
-          showList(-1);
+          showList(1);
 
         });
       });
@@ -1748,6 +1746,7 @@
 
           console.log("reorder 답글:" + JSON.stringify(reorder));
           alert(result);
+          alert("답글을 달았습니다.");
 
           modal.find("input").val("");
           modal.modal("hide");

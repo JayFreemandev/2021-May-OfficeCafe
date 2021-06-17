@@ -27,12 +27,12 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 	private BoardService service;
-	List<BoardVO> recentList = service.getRecentList(); 
 	
 	@GetMapping("/list")
 	public String list(Criteria criteria, Model model) {
 		log.info("list" + criteria);
 		model.addAttribute("list", service.geteList(criteria));
+	  List<BoardVO> recentList = service.getRecentList(); 
 		model.addAttribute("recentList", recentList);
 		int total = service.getTotal(criteria);
 		
@@ -61,6 +61,7 @@ public class BoardController {
 	 @GetMapping({"/get", "/modify"})
 	 public void get(@RequestParam("board_no") Integer board_no, Model model, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("/get or modify");
+		 List<BoardVO> recentList = service.getRecentList(); 
 		 model.addAttribute("board", service.get(board_no));
 		 model.addAttribute("recentList", recentList);
 	 }
@@ -80,7 +81,8 @@ public class BoardController {
 		 
 		 return "redirect:/board/list";
 	 }
-	 @PreAuthorize("principal.username == #board_creator_id")
+
+	 @PreAuthorize("principal.username == #board_creator_id or hasRole('ROLE_ADMIN')")
 	 @PostMapping("/remove")
 	 public String remove(@RequestParam("board_no") Integer board_no, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("remove: " + board_no);

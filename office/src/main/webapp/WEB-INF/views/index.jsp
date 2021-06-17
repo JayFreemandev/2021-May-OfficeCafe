@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -35,17 +35,15 @@
 							<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>안내</a></li>
 							<li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>도움</a></li>
 							<sec:authorize access="isAnonymous()">
-							<li><a href="/customLogin"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
+								<li><a href="/customLogin"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
-							<li><a href="/customLogout"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
+								<li><a href="/customLogout"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
 							</sec:authorize>
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-6">
-
-				</div>
+				<div class="col-md-6"></div>
 			</div>
 		</div>
 	</div>
@@ -68,7 +66,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="/board/list" class="pull-left">홈</a></li>
-						<li><a href="ask_question.html">물어봐</a></li>
+						<li><a href="/board/register">물어봐</a></li>
 						<!--
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">카테고리 <span class="caret"></span></a>
 							<ul class="dropdown-menu animated zoomIn">
@@ -95,9 +93,9 @@
 								<li><a href="category.html"> Category </a></li>
 								<li><a href="#"> 404 </a></li>
 							</ul></li>
-						--> 	
-						<li><a href="contact_us.html">로그인</a></li>
-						<li><a href="contact_us.html">회원가입</a></li>
+						-->
+						<li><a href="/customLogin">로그인</a></li>
+						<li><a href="/customLogout">회원가입</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -111,13 +109,12 @@
 	<section class="welcome-part-one">
 		<div class="container">
 			<div class="welcome-demop102 text-center">
-				<div class="button0239-item">
-				</div>
+				<div class="button0239-item"></div>
 				<div class="form-style8292">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
 						<input type="text" class="form-control form-control8392" placeholder="Ask any question and you be sure find your answer ?">
-						<span class="input-group-addon"><a href="#">검색</a></span>
+						<span class="input-group-addon" id="searchForm"><a href="#">검색</a></span>
 					</div>
 				</div>
 			</div>
@@ -145,64 +142,99 @@
 
 
 						<section id="content1">
-              <c:forEach items="${list}" var="board">
-							<div class="question-type2033">
-                <div class="row">
-                  <div class="col-md-1">
-                    <div class="left-user12923 left-user12923-repeat">
-                      <a href="#"><img src="${root}/resources/image/images.png" alt="image"> </a> <a href="#"><i class="fa fa-check" aria-hidden="true"></i></a>
-                    </div>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="right-description893">
-                      <div id="que-hedder2983">
-                        <h3>
-                          <a class='move' href='<c:out value="get?board_no=${board.board_no}"/>'> <c:out value="${board.board_title}" />
-                           <b>[<c:out value="${board.replyCnt}"/>]</b>
-                          </a>
-                        </h3>
-                      </div>
-                      <div class="ques-details10018">
-                        <p><c:out value="${board.board_creator_id}" /></p>
-                      </div>
-                      <hr>
-                      <div class="ques-icon-info3293">
-                        <a href="#"><i class="fa fa-star" aria-hidden="true"> 5 </i> </a> 
-                        <a href="#"><i class="fa fa-clock-o" aria-hidden="true"> <fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_created_date}" /></i></a> 
-                        <a href="#"><i class="fa fa-bug" aria-hidden="true"> Report</i></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="ques-type302">
-                         <a href="#">
-                        <button type="button" class="q-type23 button-ques2973">
-                          <i class="fa fa-user-circle-o" aria-hidden="true"> <c:out value="${board.board_read}" /></i>
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </c:forEach>
+							<c:forEach items="${list}" var="board">
+								<div class="question-type2033">
+									<div class="row">
+										<div class="col-md-1">
+											<div class="left-user12923 left-user12923-repeat">
+												<a href="#"><img src="${root}/resources/image/images.png" alt="image"> </a> <a href="#"><i class="fa fa-check" aria-hidden="true"></i></a>
+											</div>
+										</div>
+										<div class="col-md-9">
+											<div class="right-description893">
+												<div id="que-hedder2983">
+													<h3>
+														<a class='move' href='<c:out value="${board.board_no}"/>'> <c:out value="${board.board_title}" /> <b>[<c:out value="${board.replyCnt}" />]
+														</b>
+														</a>
+													</h3>
+												</div>
+												<div class="ques-details10018">
+													<p>
+														<c:out value="${board.board_creator_id}" />
+													</p>
+												</div>
+												<hr>
+												<div class="ques-icon-info3293">
+													<a href="#"><i class="fa fa-star" aria-hidden="true"> 5 </i> </a> <a href="#"><i class="fa fa-clock-o" aria-hidden="true"> <fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_created_date}" /></i></a> <a href="#"><i class="fa fa-bug" aria-hidden="true"> Report</i></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="ques-type302">
+												<a href="#">
+													<button type="button" class="q-type23 button-ques2973">
+														<i class="fa fa-user-circle-o" aria-hidden="true"> <c:out value="${board.board_read}" /></i>
+													</button>
+													<sec:authorize access="hasRole('ROLE_ADMIN')">   
+													<form:form action="/admin/remove" method="post">                 
+													<input type="submit" class="btn btn-danger" name="board_no" id="admin_remove_button"  
+													value="<c:out value="${board.board_no}"/>"> 
+													</form:form>
+                          </sec:authorize>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
 
 							<nav aria-label="Page navigation">
 								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-									</a></li>
+
+									<%--             <c:if test="${pageMaker.prev}">
+              <li class="paginate_button previous"><a href="#">Previous</a>
+              </li>
+            </c:if>
+
+            <c:forEach var="num" begin="${pageMaker.startPage}"
+              end="${pageMaker.endPage}">
+              <li class="paginate_button"><a href="#">${num}</a></li>
+            </c:forEach>
+
+            <c:if test="${pageMaker.next}">
+              <li class="paginate_button next"><a href="#">Next</a></li>
+            </c:if> --%>
+
+									<c:if test="${pageMaker.prev}">
+										<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a></li>
+									</c:if>
+
+									<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+										<li class="paginate_button  ${pageMaker.criteria.pageNum == num ? "active":""} "><a href="${num}">${num}</a></li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next}">
+										<li class="paginate_button next"><a href="${pageMaker.endPage +1 }">Next</a></li>
+									</c:if>
+
+
 								</ul>
 							</nav>
 						</section>
+
+						<form id='actionForm' action="/board/list" method='get'>
+							<input type='hidden' name='pageNum' value='${pageMaker.criteria.pageNum}'>
+							<input type='hidden' name='amount' value='${pageMaker.criteria.amount}'>
+
+							<input type='hidden' name='type' value='<c:out value="${ pageMaker.criteria.type }"/>'>
+							<input type='hidden' name='keyword' value='<c:out value="${ pageMaker.criteria.keyword }"/>'>
+
+
+						</form>
 						<!--  End of content-1------>
 
-						
+
 					</div>
 				</div>
 				<!--end of col-md-9 -->
@@ -243,57 +275,61 @@
 					</div>
 					<!--              login part-->
 					<sec:authorize access="isAnonymous()">
-					<div class="login-part2389">
-						<h4>Login</h4>
-            <form:form action="/login" method="post">
-            <div class="input-group300">
-              <span><i class="fa fa-user" aria-hidden="true"></i></span>
-              <input type="text" class="namein309" placeholder="Username" name='username'>
-            </div>
-            <div class="input-group300">
-              <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-              <input type="password" class="passin309" placeholder="Name" name='password'>
-            </div>
-              <input class="userlogin320" type="submit" value="login"/>
-            <div class="rememberme">
-              <label> <input type="checkbox" checked="checked" name="remember-me"> Remember Me
-              </label> <a href="/register" class="resbutton3892">Register</a>
-            </div>
-            </form:form>
-          </div>
-          </sec:authorize>
-          
-          <sec:authorize access="isAuthenticated()">
-          <div class="login-part2389">
-          <form:form action="/customLogout" method="post">
-            <h4>Login</h4>
-            <div class="input-group300">
-              <span><i class="fa fa-user1" aria-hidden="true"></i></span>
-            </div>
-            <div>
-              <p>어서오고, <sec:authentication property="principal.member.username"/>  </p>
-              <p></p>
-            </div>
-              <input class="userlogin320" type="submit" value="logout"/>
-            </form:form>
-          </div>
-          </sec:authorize>
+						<div class="login-part2389">
+							<h4>Login</h4>
+							<form:form action="/login" method="post">
+								<div class="input-group300">
+									<span><i class="fa fa-user" aria-hidden="true"></i></span>
+									<input type="text" class="namein309" placeholder="Username" name='username'>
+								</div>
+								<div class="input-group300">
+									<span><i class="fa fa-lock" aria-hidden="true"></i></span>
+									<input type="password" class="passin309" placeholder="Name" name='password'>
+								</div>
+								<input class="userlogin320" type="submit" value="login" />
+								<div class="rememberme">
+									<label> <input type="checkbox" checked="checked" name="remember-me"> Remember Me
+									</label> <a href="/register" class="resbutton3892">Register</a>
+								</div>
+							</form:form>
+						</div>
+					</sec:authorize>
+
+					<sec:authorize access="isAuthenticated()">
+						<div class="login-part2389">
+							<form:form action="/customLogout" method="post">
+								<h4>Login</h4>
+								<div class="input-group300">
+									<span><i class="fa fa-user1" aria-hidden="true"></i></span>
+								</div>
+								<div>
+									<p>
+										어서오고,
+										<sec:authentication property="principal.member.username" />
+									</p>
+									<p></p>
+								</div>
+								<input class="userlogin320" type="submit" value="logout" />
+							</form:form>
+						</div>
+					</sec:authorize>
 					<!--              highest part-->
 					<div class="highest-part302">
 						<h4>Highest Points</h4>
 						<c:forEach items="${recentList}" var="recentBoard">
-						<div class="pints-wrapper">
-							<div class="left-user3898">
-								<a href="#"><img src="${root}/resources/image/images.png" alt="Image"></a>
-								<div class="imag-overlay39">
-									<a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+							<div class="pints-wrapper">
+								<div class="left-user3898">
+									<a href="#"><img src="${root}/resources/image/images.png" alt="Image"></a>
+									<div class="imag-overlay39">
+										<a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+									</div>
 								</div>
+								<span class="points-details938"> <a href="#"><h5>
+											<c:out value="${recentBoard.board_creator_id}" />
+										</h5> </a> <a href="#" class="designetion439">열정</a>
+									<p>206 points</p>
+								</span>
 							</div>
-							<span class="points-details938"> <a href="#"><h5><c:out value="${recentBoard.board_creator_id}" /></h5>
-							</a> <a href="#" class="designetion439">열정</a>
-								<p>206 points</p>
-							</span>
-						</div>
 						</c:forEach>
 						<hr>
 					</div>
@@ -317,13 +353,17 @@
 					<!--        start recent post  -->
 					<div class="recent-post3290">
 						<h4>Recent Post</h4>
-						  <c:forEach items="${recentList}" var="recentBoard">
-						<div class="post-details021">					
-							<a href="#"><h5><c:out value="${recentBoard.board_title}" /></h5></a>
-							<p><c:out value="${recentBoard.board_contents}" /></p>
-							<small style="color: #848991"><fmt:formatDate pattern="yyyy-MM-dd" value="${recentBoard.board_created_date}" /></small>
-						</div>
-						  </c:forEach>
+						<c:forEach items="${recentList}" var="recentBoard">
+							<div class="post-details021">
+								<a href="#"><h5>
+										<c:out value="${recentBoard.board_title}" />
+									</h5></a>
+								<p>
+									<c:out value="${recentBoard.board_contents}" />
+								</p>
+								<small style="color: #848991"><fmt:formatDate pattern="yyyy-MM-dd" value="${recentBoard.board_created_date}" /></small>
+							</div>
+						</c:forEach>
 						<hr>
 					</div>
 					<!--       end recent post    -->
@@ -439,7 +479,84 @@
 	<script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
 	<script src="${root}/resources/js/bootstrap.min.js"></script>
 	<script src="${root}/resources/js/npm.js"></script>
+	<script type="text/javascript">
+	var bnoValue = '<c:out value="${board.board_no}"/>';
+    $(document).ready(function() {
+
+      var result = '<c:out value="${result}"/>';
+
+      checkModal(result);
+
+      history.replaceState({}, null, null);
+
+      function checkModal(result) {
+
+        if (result === '' || history.state) {
+          return;
+        }
+
+        if (parseInt(result) > 0) {
+          $(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+        }
+
+        $("#myModal").modal("show");
+      }
+
+      $("#regBtn").on("click", function() {
+
+        self.location = "/board/register";
+
+      });
+
+      var actionForm = $("#actionForm");
+
+      $(".paginate_button a").on("click", function(e) {
+
+        e.preventDefault();
+
+        console.log('click');
+
+        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+        actionForm.submit();
+      });
+
+      $(".move").on("click", function(e) {
+
+        e.preventDefault();
+        actionForm.append("<input type='hidden' name='board_no' value='" + $(this).attr("href") + "'>");
+        actionForm.attr("action", "/board/get");
+        actionForm.submit();
+
+      });
+
+      var searchForm = $("#searchForm");
+
+      $("#searchForm button").on("click", function(e) {
+
+        if (!searchForm.find("option:selected").val()) {
+          alert("검색종류를 선택하세요");
+          return false;
+        }
+
+        if (!searchForm.find("input[name='keyword']").val()) {
+          alert("키워드를 입력하세요");
+          return false;
+        }
+
+        searchForm.find("input[name='pageNum']").val("1");
+        e.preventDefault();
+
+        searchForm.submit();
+
+      });
+
+    });
+    
+    var action=$("#admin_remove_button");
+    $('#admin_remove_button').click(function(){
+      console.log("통과함");
+    });
+  </script>
 </body>
 
 </html>
-													

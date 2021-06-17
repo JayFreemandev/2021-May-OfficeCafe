@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -176,59 +179,7 @@ $(document).ready(function(){
                             <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Maria Anders</td>
-                        <td>Obere Str. 57</td>
-                        <td>Berlin</td>
-                        <td>12209</td>
-                        <td>Germany</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Fran Wilson</td>
-                        <td>C/ Araquil, 67</td>
-                        <td>Madrid</td>
-                        <td>28023</td>
-                        <td>Spain</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Dominique Perrier</td>
-                        <td>25, rue Lauriston</td>
-                        <td>Paris</td>
-                        <td>75016</td>
-                        <td>France</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Martin Blank</td>
-                        <td>Via Monte Bianco 34</td>
-                        <td>Turin</td>
-                        <td>10100</td>
-                        <td>Italy</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>        
+                    </tr>   
                 </tbody>
             </table>
             <div class="clearfix">
