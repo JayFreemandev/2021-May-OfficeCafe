@@ -1,5 +1,9 @@
 package com.office.cafe.controller;
 
+import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +26,14 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController {
-
 	private BoardService service;
 	
 	@GetMapping("/list")
 	public String list(Criteria criteria, Model model) {
 		log.info("list" + criteria);
 		model.addAttribute("list", service.geteList(criteria));
+	  List<BoardVO> recentList = service.getRecentList(); 
+		model.addAttribute("recentList", recentList);
 		int total = service.getTotal(criteria);
 		
 		log.info("total" + total);
@@ -38,30 +43,14 @@ public class BoardController {
 		return "index";
 	}
 	
-	/*
-	 @GetMapping("/list")
-	 public String list(Model model) {
-	 log.info("list");
-	 model.addAttribute("list", service.getList());
-	 return "/board/list";
-	}
-	 */
-	
-	/*
-	@GetMapping("/list")
-	public String openBoardList(@ModelAttribute("page") PageVO page, Model model) {
-		List<BoardVO> boardList = service.geteListPage(page);
-		model.addAttribute("boardList", boardList);
-
-		return "/board/list";
-	}
-	 */
 	 @GetMapping("/register")
+	 @PreAuthorize("isAuthentificated()")
 		public void register() {
 
 	}
 	
 	 @PostMapping("/register")
+	 @PreAuthorize("isAuthentificated()")
 	 public String register(BoardVO board, RedirectAttributes redirec) {
 		 log.info("register: "+ board);
 		 service.register(board);
@@ -72,9 +61,12 @@ public class BoardController {
 	 @GetMapping({"/get", "/modify"})
 	 public void get(@RequestParam("board_no") Integer board_no, Model model, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("/get or modify");
+		 List<BoardVO> recentList = service.getRecentList(); 
 		 model.addAttribute("board", service.get(board_no));
+		 model.addAttribute("recentList", recentList);
 	 }
 	 
+	 @PreAuthorize("principal.username == #board.board_creator_id")
 	 @PostMapping("/modify")
 	 public String modify(BoardVO board, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("modify: "+ board);
@@ -89,7 +81,8 @@ public class BoardController {
 		 
 		 return "redirect:/board/list";
 	 }
-	 
+
+	 @PreAuthorize("principal.username == #board_creator_id or hasRole('ROLE_ADMIN')")
 	 @PostMapping("/remove")
 	 public String remove(@RequestParam("board_no") Integer board_no, RedirectAttributes redirec, @ModelAttribute("criteria") Criteria criteria) {
 		 log.info("remove: " + board_no);

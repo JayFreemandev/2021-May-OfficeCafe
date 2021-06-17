@@ -15,6 +15,12 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="${root}/resources/css/loginstyle.css">
+<style>
+#register{
+    margin-left: 70px;
+    margin-top: 10px;
+}
+</style>
 </head>
 
 <body>
@@ -30,14 +36,14 @@
 					<input type="password" name="password" value="admin" />
 					<div class="text-center">
 						<div>
-							<input type='submit' value='로그인'>
-							<input type='checkbox' name='remember-me'> Remember Me
+							<input class="button" type="submit" value='로그인'>
+							<input type="checkbox" name="remember-me"> Remember Me
 						</div>
 					</div>
 				</form:form>
         <form:form method='get' action="/register">
          <div>
-         <a href="register"><div class="button">Create an account</div></a>
+         <a href="register"><input class="button" id="register" value="Create an account"/></a>
          </div>
         </form:form>
 				</div>

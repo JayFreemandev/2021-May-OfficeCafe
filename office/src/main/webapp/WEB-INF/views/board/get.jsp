@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -25,12 +27,11 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="${root}/resources/js/jquery-3.1.1.min.js"></script>
 <script src="${root}/resources/js/bootstrap.min.js"></script>
-<script src="${root}/resources/js/npm.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 <style>
 #txtEditor {
-	width: 800px;
-	height: 300px;
+  width: 800px;
+  height: 300px;
 }
 
 .animation-container {
@@ -966,10 +967,8 @@
      opacity: 0;
   }
 }
- 
 </style>
 </head>
-
 <body>
 	<div class="top-bar">
 		<div class="container">
@@ -977,78 +976,75 @@
 				<div class="col-md-6">
 					<div class="navbar-menu-left-side239">
 						<ul>
-							<li><a href="contact_us.html" target="_blank"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contact</a></li>
-							<li><a href="#" target="_blank"><i class="fa fa-headphones" aria-hidden="true"></i>Support</a></li>
-							<li><a href="logIn.html" target="_blank"><i class="fa fa-user" aria-hidden="true"></i>Login Area</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="navbar-serch-right-side">
-						<form class="navbar-form" role="search">
-							<div class="input-group add-on">
-								<input class="form-control form-control222" placeholder="Search" name="srch-term" id="srch-term" type="text">
-								<div class="input-group-btn">
-									<button class="btn btn-default btn-default2913" type="submit">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
+              <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>안내</a></li>
+              <li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>도움</a></li>
+              <sec:authorize access="isAnonymous()">
+              <li><a href="/customLogin"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
+              </sec:authorize>
+              <sec:authorize access="isAuthenticated()">
+              <li><a href="/customLogout"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
+              </sec:authorize>
+            </ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="top-menu-bottom932">
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#"><img src="image/logo.png" alt="Logo"></a>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="ask_question.html">Ask Question</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Question <span class="caret"></span></a>
-							<ul class="dropdown-menu animated zoomIn">
-								<li><a href="category.html">Question Category</a></li>
-								<li><a href="category.html">HTML</a></li>
-								<li><a href="category.html">CSS</a></li>
-								<li><a href="category.html">Javascript</a></li>
-								<li><a href="category.html">Bootstrap</a></li>
-							</ul></li>
-
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
-							<ul class="dropdown-menu animated zoomIn">
-								<li><a href="blog.html">Blog </a></li>
-							</ul></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Page <span class="caret"></span></a>
-							<ul class="dropdown-menu animated zoomIn">
-								<li><a href="logIn.html">Login</a></li>
-								<li><a href="contact_us.html"> Contact Us</a></li>
-								<li><a href="ask_question.html"> Ask Question </a></li>
-								<li><a href="post-deatils.html"> Post-Details </a></li>
-								<li><a href="user.html">All User</a></li>
-								<li><a href="#"> User Question </a></li>
-								<li><a href="#"> Category </a></li>
-								<li><a href="#"> 404 </a></li>
-							</ul></li>
-						<li><a href="contact_us.html">Contact us</a></li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-			<!-- /.container-fluid -->
-		</nav>
-	</div>
+	<!-- ==========header mega navbar=======-->
+  <div class="top-menu-bottom932">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/board/list"><img src="${root}/resources/image/logo.png" alt="Logo"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/board/list" class="pull-left">홈</a></li>
+            <li><a href="/board/register">물어봐</a></li>
+            <!--
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">카테고리 <span class="caret"></span></a>
+              <ul class="dropdown-menu animated zoomIn">
+                <li><a href="category.html">Question Category</a></li>
+                <li><a href="category.html">HTML</a></li>
+                <li><a href="category.html">CSS</a></li>
+                <li><a href="category.html">Javascript</a></li>
+                <li><a href="category.html">Bootstrap</a></li>
+              </ul></li>
+            <!--  
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">test <span class="caret"></span></a>
+              <ul class="dropdown-menu animated zoomIn">
+                <li><a href="blog.html">Blog </a></li>
+              </ul></li>
+            
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">page <span class="caret"></span></a>
+              <ul class="dropdown-menu animated zoomIn">
+                <li><a href="logIn.html">Login</a></li>
+                <li><a href="contact_us.html"> Contact Us</a></li>
+                <li><a href="ask_question.html"> Ask Question </a></li>
+                <li><a href="post-deatils.html"> Post-Details </a></li>
+                <li><a href="user.html">All User</a></li>
+                <li><a href="user_question.html"> User Question </a></li>
+                <li><a href="category.html"> Category </a></li>
+                <li><a href="#"> 404 </a></li>
+              </ul></li>
+            -->   
+            <li><a href="/customLogin">로그인</a></li>
+            <li><a href="/customLogout">회원가입</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </div>
+  
 	<section class="header-descriptin329">
 		<div class="container">
 			<h3>Post Details</h3>
@@ -1100,7 +1096,12 @@
 									</button>
 									<span class="single-question-vote-result">+22</span>
 								</div>
-								<button data-oper='modify' class="fa fa-question-circle">Modify</button>
+								<sec:authentication property="principal" var="pinfo"/>
+								  <sec:authorize access="isAuthenticated()">
+								    <c:if test="${pinfo.username eq board.board_creator_id}">
+								      <button data-oper='modify' class="fa fa-question-circle">Modify</button>
+								    </c:if>
+								  </sec:authorize>
 								<button data-oper='list' class="fa fa-question-circle">List</button>
 
 								<form id='operForm' action="/board/modify" method="get">
@@ -1251,7 +1252,9 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<i class="fa fa-comments fa-fw"></i> Reply
+										<sec:authorize access="isAuthenticated()">
 										<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
+										</sec:authorize>
 									</div>
 
 									<!--  /.panel-heading -->
@@ -1315,88 +1318,41 @@
           </a></li>
         </div>
         <!--              login part-->
-        <div class="login-part2389">
-          <h4>Login</h4>
-          <div class="input-group300">
-            <span><i class="fa fa-user" aria-hidden="true"></i></span>
-            <input type="text" class="namein309" placeholder="Username">
-          </div>
-          <div class="input-group300">
-            <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-            <input type="password" class="passin309" placeholder="Name">
-          </div>
-          <a href="#">
-            <button type="button" class="userlogin320">Log In</button>
-          </a>
-          <div class="rememberme">
-            <label> <input type="checkbox" checked="checked"> Remember Me
-            </label> <a href="#" class="resbutton3892">Register</a>
-          </div>
-        </div>
-        <!--              highest part-->
-        <div class="highest-part302">
-          <h4>Highest Points</h4>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
+          <sec:authorize access="isAuthenticated()">
+          <div class="login-part2389">
+          <form:form action="/customLogout" method="post">
+            <h4>Login</h4>
+            <div class="input-group300">
+              <span><i class="fa fa-user1" aria-hidden="true"></i></span>
             </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
-          </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
+            <div>
+              <p>어서오고, <sec:authentication property="principal.member.username"/>  </p>
+              <p></p>
             </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
+              <input class="userlogin320" type="submit" value="logout"/>
+            </form:form>
           </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+          </sec:authorize>
+          <!--              highest part-->
+          <div class="highest-part302">
+            <h4>Highest Points</h4>
+            <c:forEach items="${recentList}" var="recentBoard">
+            <div class="pints-wrapper">
+              <div class="left-user3898">
+                <a href="#"><img src="${root}/resources/image/images.png" alt="Image"></a>
+                <div class="imag-overlay39">
+                  <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
               </div>
+              <span class="points-details938"> <a href="#"><h5><c:out value="${recentBoard.board_creator_id}" /></h5>
+              </a> <a href="#" class="designetion439">열정</a>
+                <p>206 points</p>
+              </span>
             </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
+            </c:forEach>
+            <hr>
           </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
-          </div>
-          <hr>
-          <div class="pints-wrapper">
-            <div class="left-user3898">
-              <a href="#"><img src="image/images.png" alt="Image"></a>
-              <div class="imag-overlay39">
-                <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            <span class="points-details938"> <a href="#"><h5>Ahmed Hasan</h5></a> <a href="#" class="designetion439">Pundit</a>
-              <p>206 points</p>
-            </span>
-          </div>
-        </div>
-        <!--               end of Highest points -->
+          <!--               end of Highest points -->
         <!--          start tags part-->
         <div class="tags-part2398">
           <h4>Tags</h4>
@@ -1414,49 +1370,23 @@
         </div>
         <!--          End tags part-->
         <!--        start recent post  -->
-        <div class="recent-post3290">
-          <h4>Recent Post</h4>
-          <div class="post-details021">
-            <a href="#"><h5>How much do web developers</h5></a>
-            <p>I am thinking of pursuing web developing as a career & was ...</p>
-            <small style="color: #848991">July 16, 2017</small>
+          <div class="recent-post3290">
+            <h4>Recent Post</h4>
+              <c:forEach items="${recentList}" var="recentBoard">
+            <div class="post-details021">         
+              <a href="#"><h5><c:out value="${recentBoard.board_title}" /></h5></a>
+              <p><c:out value="${recentBoard.board_contents}" /></p>
+              <small style="color: #848991"><fmt:formatDate pattern="yyyy-MM-dd" value="${recentBoard.board_created_date}" /></small>
+            </div>
+              </c:forEach>
+            <hr>
           </div>
-          <hr>
-          <div class="post-details021">
-            <a href="#"><h5>How much do web developers</h5></a>
-            <p>I am thinking of pursuing web developing as a career & was ...</p>
-            <small style="color: #848991">July 16, 2017</small>
-          </div>
-          <hr>
-          <div class="post-details021">
-            <a href="#"><h5>How much do web developers</h5></a>
-            <p>I am thinking of pursuing web developing as a career & was ...</p>
-            <small style="color: #848991">July 16, 2017</small>
-          </div>
-        </div>
-        <!--       end recent post    -->
+          <!--       end recent post    -->
       </aside>
     </div>
     </div>
   </section>
   <!--    footer -->
-  <div class="footer-search">
-    <div class="container">
-      <div class="row">
-        <div id="custom-search-input">
-          <div class="input-group col-md-12">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <input type="text" class="  search-query form-control user-control30" placeholder="Search here...." />
-            <span class="input-group-btn">
-              <button class="btn btn-danger" type="button">
-                <span class=" glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <section class="footer-part">
     <div class="container">
       <div class="row">
@@ -1614,6 +1544,7 @@
         page : page || 1
         }, function(replyCnt, list) {
 
+       
           console.log("replyCnt 댓글수: " + replyCnt);
           console.log("list 댓글목록: " + list);
 
@@ -1713,7 +1644,16 @@
       var modalRemoveBtn = $("#modalRemoveBtn");
       var modalRegisterBtn = $("#modalRegisterBtn");
       var modalAddReplyBtn = $("#modalAddReplyBtn");
-
+  
+      var reg_id = null;
+      
+      <sec:authorize access="isAuthenticated()">
+      reg_id ='<sec:authentication property="principal.username"/>';
+      </sec:authorize>
+      
+      var csrfHeaderName = "${_csrf.headerName}";
+      var csrfTokenValue = "${_csrf.token}";
+      
       var reorder;
 
       $("#modalCloseBtn").on("click", function(e) {
@@ -1724,6 +1664,7 @@
       $("#addReplyBtn").on("click", function(e) {
 
         modal.find("input").val("");
+        modal.find("input[name='reg_id']").val(reg_id);
         modalInputReplyDate.closest("div").hide();
         modal.find("button[id !='modalCloseBtn']").hide();
 
@@ -1732,14 +1673,17 @@
         $(".modal").modal("show");
 
       });
-
+      
+      //Ajax spring security header
+      $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+      });
+      
       modalRegisterBtn.on("click", function(e) {
-        var contents = modalInputReply.val();
-        var reg_id = modalInputReplyer.val();
         var reply = {
-        'contents' : contents,
+        'contents' : modalInputReply.val(),
 
-        'reg_id' : reg_id,
+        'reg_id' : modalInputReplyer.val(),
 
         'bid' : bnoValue,
 
@@ -1748,7 +1692,6 @@
         'reorder' : 0
 
         };
-
         replyService.add(reply, function(result) {
 
           alert(result);
@@ -1756,19 +1699,9 @@
           modal.find("input").val("");
           modal.modal("hide");
 
-          //showList(1);
-          showList(-1);
+          showList(1);
 
         });
-
-        replyService.update(reply, function(result) {
-
-          alert(result);
-          modal.modal("hide");
-          showList(pageNum);
-
-        });
-
       });
 
       $(".chat").on("click", "li", function(e) {
@@ -1813,6 +1746,7 @@
 
           console.log("reorder 답글:" + JSON.stringify(reorder));
           alert(result);
+          alert("답글을 달았습니다.");
 
           modal.find("input").val("");
           modal.modal("hide");
@@ -1824,12 +1758,25 @@
       });
 
       modalModBtn.on("click", function(e) {
-
+        var originalRegId = modalInputReplyer.val();
         var reply = {
         rid : modal.data("rid"),
-        reg_id : modalInputReplyer.val(),
-        contents : modalInputReply.val()
+        contents : modalInputReply.val(),
+        reg_id : originalRegId
         };
+        
+        if(!reg_id){
+          alert("로그인후 수정 가능");
+          modal.modal("hide");
+          return;
+        }
+        
+        if(reg_id != originalRegId){
+          alert("자신의 댓글만 수정 가능");
+          modal.modal("hide");
+          return;
+        }
+        
         replyService.update(reply, function(result) {
 
           alert(result);
@@ -1842,12 +1789,28 @@
 
       modalRemoveBtn.on("click", function(e) {
 
-        var reply = {
-          contents : modalInputReply.val()
-        };
         var rid = modal.data("rid");
-
-        replyService.remove(rid, function(result) {
+        
+        console.log("댓글번호: " + rid);
+        console.log("댓글작성자: " + reg_id);
+        
+        if(!reg_id){
+          alert("로그인후 삭제 가능");
+          modal.modal("hide");
+          return;
+        }
+        
+        var originalRegId = modalInputReplyer.val();
+        
+        console.log("댓글 원작성자: " + originalRegId);
+        
+        if(reg_id != originalRegId){
+          alert("자신의 댓글만 삭제가 가능");
+          modal.modal("hide");
+          return;
+        }
+        
+        replyService.remove(rid, originalRegId, function(result) {
 
           alert(result);
           modal.modal("hide");
@@ -1857,7 +1820,7 @@
 
       });
 
-    });
+});
   </script>
 
 	<script type="text/javascript">

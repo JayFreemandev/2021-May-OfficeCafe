@@ -18,6 +18,8 @@ public interface BoardMapper {
 	public int delete(Integer board_no);
 	
 	public List<BoardVO> getList();
+	
+	public List<BoardVO> getRecentList();
 
 	public void insertSelectKey(BoardVO board);
 	

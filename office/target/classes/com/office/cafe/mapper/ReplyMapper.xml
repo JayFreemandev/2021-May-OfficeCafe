@@ -26,7 +26,7 @@
 	</delete>
 	
 	<select id="read" resultType="ReplyVO">
-	select * from t_reply where rid = #{rid};
+	select * from t_reply where rid = #{rid}
 	</select>
 	
     <!-- 페이지에 해당하는 댓글 목록 조회 -->
