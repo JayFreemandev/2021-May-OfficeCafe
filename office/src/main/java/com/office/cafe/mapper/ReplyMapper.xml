@@ -34,7 +34,7 @@
 		select *
 		from t_reply
 		where bid = #{bid}
-		order by rid asc
+		order by reorder desc, rid
 		LIMIT #{criteria.pageNum}, #{criteria.amount}
 	</select>
 	

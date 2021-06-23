@@ -179,7 +179,7 @@
 													<sec:authorize access="hasRole('ROLE_ADMIN')">   
 													<form:form action="/admin/remove" method="post">                 
 													<input type="submit" class="btn btn-danger" name="board_no" id="admin_remove_button"  
-													value="<c:out value="${board.board_no}"/>"> 
+													value="삭제"> 
 													</form:form>
                           </sec:authorize>
 												</a>
