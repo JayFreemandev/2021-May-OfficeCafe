@@ -36,7 +36,7 @@
 <h2 id="about-the-project"> :pencil: About The Project and OverView</h2>
 
 <p align="justify"> 
-  First project using SPRING MVC and JSP, motivated by blind(https://www.teamblind.com/kr/), which is n anonymous forum and community for verified employees to discuss issues. There are basic concepts of CRUD such as board, reply and security login and paging(mybatis), apply good example of commit and readme style by many examples. I used Bootstrap design for this project and this UI/UX remind me reddit.com. Thank you for 쿠키, I tried to apply programming logic and domain constructor using his book, [코드로 배우는 스프링 웹](http://www.yes24.com/Product/Goods/64340061) and studied basic Spring framework in Udemy by Chard Darby. 
+  First project using SPRING MVC and JSP, motivated by reddit community. There are basic concepts of CRUD such as board, reply and security login and paging(mybatis), apply good example of commit and readme style by many examples. I used Bootstrap design for this project and this UI/UX remind me reddit.com. I tried to apply programming logic and domain constructor using his book, [코드로 배우는 스프링 웹](http://www.yes24.com/Product/Goods/64340061) and studied basic Spring framework in Udemy by Chard Darby. 
 </p>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
