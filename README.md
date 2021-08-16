@@ -43,7 +43,7 @@
 
 <!-- DEMO -->
 <h2 id="demo"> :cloud: Demo</h2>
-Here is a working live demo :  https://iharsh234.github.io/WebApp/ (not open yet)
+Here is a working live demo : http://ec2-52-79-247-18.ap-northeast-2.compute.amazonaws.com:8080 (not perfectly work)
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <!-- PROJECT FILES DESCRIPTION -->
